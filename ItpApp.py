@@ -73,19 +73,22 @@ def UpdateSupervisor():
     supervisor_name = request.form['companyName']
     supervisor_email = request.form['companyAddress']
 
-    insert_sql = "UPDATE INTO assignment (supervisor_name, supervisor_email) SET (%s, %s) WHERE student_id = %s"
+    update_sql = "UPDATE assignment SET supervisor_name = %s, supervisor_email = %s WHERE student_id = %s"
     cursor = db_conn.cursor()
 
     try:
-
-        cursor.execute(insert_sql, (supervisor_name, supervisor_email))
+        cursor.execute(update_sql, (supervisor_name, supervisor_email, student_id))
         db_conn.commit()
+        
+    except Exception as e:
+        db_conn.rollback()  # Rollback changes if an error occurs
+        print(f"Error: {e}")
         
     finally:
         cursor.close()
 
-    # return render_template('student.html', name=emp_name)
     return render_template('student.html')
+
 
 @app.route("/addcompany", methods=['POST'])
 def AddCompany():
