@@ -26,9 +26,6 @@ def home():
     return render_template('student.html')
 
 
-# @app.route("/about", methods=['POST'])
-# def about():
-#     return render_template('www.intellipaat.com')
 
 @app.route("/fetchdata", methods=['GET', 'POST'])
 def fetch_student_data():
@@ -69,6 +66,21 @@ def fetch_student_data():
         else:
             return "Student not found"
 
+@app.route("/updatesupervisor", methods=['POST'])
+def AddCompany():
+    student_id = 123456
+    supervisor_name = request.form['companyName']
+    supervisor_email = request.form['companyAddress']
+
+    insert_sql = "INSERT INTO assignment (supervisor_name, supervisor_email) VALUES (%s, %s) WHERE student_id = %s"
+    cursor = db_conn.cursor()
+    
+    cursor.execute(insert_sql, (supervisor_name, supervisor_email))
+    db_conn.commit()
+    
+    cursor.close()
+
+    return render_template('student.html')
 
 @app.route("/addcompany", methods=['POST'])
 def AddCompany():

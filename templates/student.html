@@ -170,58 +170,59 @@
             </div>
         </div>
 
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">UC Supervisor</div>
-                <div class="panel-body">
+        <form action="/updatesupervisor" autocomplete="on" method="POST" enctype="multipart/form-data">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">UC Supervisor</div>
+                    <div class="panel-body">
 
-                    <div class="form-group" id="updateStatusMsg" hidden>
-                        <span class="col-md-offset-2 col-md-10">
-                            <i class="text-info">Saving data...</i>
-                        </span>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="ucSupervisor">UC Supervisor Name</label>
-                        <div class="col-md-10">
-                            <div class="col-md-10">
-                                <input class="form-control text-box single-line" id="ucSupervisor" name="ucSupervisor"
-                                    type="text" />
-                                <span id="ucSupervisor"></span>
-                                <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisor"
-                                    data-valmsg-replace="true"></span>
-                            </div>
-
+                        <div class="form-group" id="updateStatusMsg" hidden>
+                            <span class="col-md-offset-2 col-md-10">
+                                <i class="text-info">Saving data...</i>
+                            </span>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="ucSupervisorEmail">UC Supervisor Email</label>
-                        <div class="col-md-10">
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="ucSupervisor">UC Supervisor Name</label>
                             <div class="col-md-10">
-                                <input class="form-control text-box single-line" id="ucSupervisorEmail"
-                                    name="ucSupervisorEmail" placeholder="e.g: xxxxx@tarc.edu.my"
-                                    type="email">
-                                <span id="ucSupervisorEmail"></span>
-                                <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisorEmail"
-                                    data-valmsg-replace="true"></span>
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" id="ucSupervisor"
+                                        name="ucSupervisor" type="text" />
+                                    <span id="ucSupervisor"></span>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisor"
+                                        data-valmsg-replace="true"></span>
+                                </div>
+
                             </div>
                         </div>
 
-                    </div>
-
-                    <div class="form-group ">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-10">
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="ucSupervisorEmail">UC Supervisor Email</label>
                             <div class="col-md-10">
-                                <input id="btnUpdate" type="button" value="Update" class="btn btn-default" />
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" id="ucSupervisorEmail"
+                                        name="ucSupervisorEmail" placeholder="e.g: xxxxx@tarc.edu.my" type="email">
+                                    <span id="ucSupervisorEmail"></span>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisorEmail"
+                                        data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-10">
+                                <div class="col-md-10">
+                                    <input id="btnUpdate" type="button" value="Update" class="btn btn-default" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        </form>
 
         <div class="panel-group">
             <div class="panel panel-default">
