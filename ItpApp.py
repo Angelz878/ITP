@@ -122,7 +122,7 @@ def AddCompany():
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
             s3.Bucket(custombucket).put_object(
-                Key=company_acceptance_form_in_s3, Body=company_acceptance_form)
+                Key=company_acceptance_form_in_s3, Body=company_acceptance_form, ContentType='application/pdf')
             bucket_location = boto3.client(
                 's3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
@@ -145,7 +145,7 @@ def AddCompany():
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
-                Key=parent_acknowledge_form_in_s3, Body=parent_acknowledge_form)
+                Key=parent_acknowledge_form_in_s3, Body=parent_acknowledge_form, ContentType='application/pdf')
             bucket_location = boto3.client(
                 's3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
@@ -168,7 +168,7 @@ def AddCompany():
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
-                Key=letter_of_indemnity_in_s3, Body=letter_of_indemnity)
+                Key=letter_of_indemnity_in_s3, Body=letter_of_indemnity, ContentType='application/pdf')
             bucket_location = boto3.client(
                 's3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
@@ -191,7 +191,7 @@ def AddCompany():
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
-                Key=hired_evidence_in_s3, Body=hired_evidence)
+                Key=hired_evidence_in_s3, Body=hired_evidence, ContentType='application/pdf')
             bucket_location = boto3.client(
                 's3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
