@@ -68,18 +68,23 @@ def fetch_student_data():
 
 @app.route("/updatesupervisor", methods=['POST'])
 def UpdateSupervisor():
+    
     student_id = 123456
     supervisor_name = request.form['companyName']
     supervisor_email = request.form['companyAddress']
 
-    insert_sql = "INSERT INTO assignment (supervisor_name, supervisor_email) VALUES (%s, %s) WHERE student_id = %s"
+    insert_sql = "UPDATE INTO assignment (supervisor_name, supervisor_email) SET (%s, %s) WHERE student_id = %s"
     cursor = db_conn.cursor()
-    
-    cursor.execute(insert_sql, (supervisor_name, supervisor_email))
-    db_conn.commit()
-    
-    cursor.close()
 
+    try:
+
+        cursor.execute(insert_sql, (supervisor_name, supervisor_email))
+        db_conn.commit()
+        
+    finally:
+        cursor.close()
+
+    # return render_template('student.html', name=emp_name)
     return render_template('student.html')
 
 @app.route("/addcompany", methods=['POST'])
