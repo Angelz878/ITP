@@ -70,8 +70,8 @@ def fetch_student_data():
 def UpdateSupervisor():
     
     student_id = 123456
-    supervisor_name = request.form['companyName']
-    supervisor_email = request.form['companyAddress']
+    supervisor_name = request.form['ucSupervisor']
+    supervisor_email = request.form['ucSupervisorEmail']
 
     update_sql = "UPDATE assignment SET supervisor_name = %s, supervisor_email = %s WHERE student_id = %s"
     cursor = db_conn.cursor()
