@@ -32,6 +32,7 @@ def home():
 
 @app.route("/fetchdata", methods=['GET', 'POST'])
 def fetch_student_data():
+    student_id = 123456
     try:
         # Define the SQL query to fetch data from the "assignment" table
         sql_query = """
@@ -43,7 +44,7 @@ def fetch_student_data():
                 company_name, company_address, monthly_allowance, 
                 company_supervisor_name, company_supervisor_email
             FROM assignment
-            WHERE student_id = 123456
+            WHERE student_id = %s
         """
 
         cursor = db_conn.cursor()
