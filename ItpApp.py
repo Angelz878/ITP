@@ -58,7 +58,7 @@ def fetch_student_data():
                 "student_gender": student_data[7],
                 "student_email": student_data[8],
                 "mobile_number": student_data[9],
-                "supervior_name": student_data[10],
+                "supervisor_name": student_data[10],
                 "supervisor_email": student_data[11],
             }
 
