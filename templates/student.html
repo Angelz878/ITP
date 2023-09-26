@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index - TAR UC ITP</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content.css') }}">
+    <!-- Add this script to your HTML -->
     <script>
         // Function to fetch student data when the page loads
         function fetchStudentData() {
             // Make an AJAX request to the /fetchdata route
-            fetch('/fetchdata/<student_id>') // Replace <student_id> with the actual student ID
+            fetch('/fetchdata')
                 .then(response => response.json())
                 .then(data => {
                     // Update the page content with the fetched data
@@ -61,11 +62,11 @@
                     <div class="form-group">
                         <label class="control-label col-md-2" for="cohort">Cohort</label>
                         <div class="col-md-10">
-                            <input id="cohortInput" name="cohort" type="hidden" value="" />
+                            <input id="cohort" name="cohort" type="hidden" value="" />
                             <span id="cohort"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="cohort"
                                 data-valmsg-replace="true"></span>
-                        </div>                        
+                        </div>
                     </div>
 
                     <div class="form-group">
