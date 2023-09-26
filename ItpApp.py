@@ -21,7 +21,7 @@ output = {}
 table = 'assignment'
 
 
-@app.route("", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('student.html')
 
