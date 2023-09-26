@@ -365,7 +365,25 @@
     </footer>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Function to fetch student data when the page loads
+            function fetchStudentData() {
+                // Make an AJAX request to the /fetchdata route
+                fetch('/fetchdata')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the page content with the fetched data
+                        document.getElementById('cohortValue').innerText = data.cohort;
+                        // Update other elements as needed
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
 
+            // Call the fetchStudentData function when the page loads
+            fetchStudentData();
+        });
+    </script>
 
 </body>
 
