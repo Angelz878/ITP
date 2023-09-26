@@ -43,16 +43,16 @@ def AddCompany():
     letter_of_indemnity = request.files['attchLetterOfIndemnity']
     hired_evidence = request.files['attchHiredEvidence']
 
-    insert_sql = "INSERT INTO assignment VALUES (%s, %s, %d, %s, %s)"
+    insert_sql = "INSERT INTO assignment VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
-    if (company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "") or hired_evidence.filename == "":
+    if (company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "") or hired_evidence.filename == "" :
         return "Please select a file"
 
     try:
 
         cursor.execute(insert_sql, (company_name, company_address,
-                       int(monthly_allowance), company_supervisor_name, company_supervisor_email))
+                       monthly_allowance, company_supervisor_name, company_supervisor_email))
         db_conn.commit()
         # Uplaod image file in S3 #
         company_acceptance_form_in_s3 = "com-acceptance-form" + \
