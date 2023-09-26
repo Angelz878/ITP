@@ -70,6 +70,8 @@ def fetch_student_data():
             "company_supervisor_name": student_data[15],
             "company_supervisor_email": student_data[16]
         }
+        print("Fetched Student Data:", student_dict)
+
         return render_template('student.html', student_data=student_dict)
     else:
         return "Student not found"
