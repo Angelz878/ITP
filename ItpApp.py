@@ -52,7 +52,7 @@ def AddCompany():
     try:
 
         cursor.execute(insert_sql, (company_name, company_address,
-                       monthly_allowance, company_supervisor_name, company_supervisor_email))
+                       int(monthly_allowance), company_supervisor_name, company_supervisor_email))
         db_conn.commit()
         # Uplaod image file in S3 #
         company_acceptance_form_in_s3 = "com-acceptance-form" + \
