@@ -4,10 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page - TAR UC ITP</title>
-    <script src = "jquery.js"></script>
-    <script src = "bootstrap.js"></script>
-    <script src = "modernizr.js"></script>
-    <link rel="stylesheet" type="text/css" href="content.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content.css') }}">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,7 +19,6 @@
             </div>
             <div id="itenMenu" class="navbar-collapse collapse  navbar-right">
                     <ul class="nav navbar-nav">
-                        <li><a href="/Home/CommitteeLogin">Committee Login</a></li>
                         <li><a href="/Home/StudentLogin">Student Login</a></li>
                     </ul>
             </div>
