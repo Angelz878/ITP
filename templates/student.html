@@ -15,19 +15,19 @@
                 .then(response => response.json())
                 .then(data => {
                     // Update the page content with the fetched data
-                    document.getElementById('cohort').innerText = data.cohort;
-                    document.getElementById('intern_period').innerText = data.intern_period;
-                    document.getElementById('status').innerText = data.status;
-                    document.getElementById('remark').innerText = data.remark;
+                    document.getElementById('cohortValue').innerText = data.cohort;
+                    document.getElementById('internPeriodValue').innerText = data.intern_period;
+                    document.getElementById('statusValue').innerText = data.status;
+                    document.getElementById('remarkValue').innerText = data.remark;
                     document.getElementById('studentName').innerText = data.student_name;
-                    document.getElementById('studentid').innerText = data.student_id;
-                    document.getElementById('studentnric').innerText = data.student_NRIC;
-                    document.getElementById('studentgender').innerText = data.student_gender;
-                    document.getElementById('studentprogramme').innerText = data.student_programme;
+                    document.getElementById('studentId').innerText = data.student_id;
+                    document.getElementById('studentNric').innerText = data.student_NRIC;
+                    document.getElementById('studentGender').innerText = data.student_gender;
+                    document.getElementById('studentProgramme').innerText = data.student_programme;
                     document.getElementById('studentEmail').innerText = data.student_email;
-                    document.getElementById('studentcontactNo').innerText = data.mobile_number;
-                    document.getElementById('supervisorname').value = data.supervisor_name;
-                    document.getElementById('supervisoremail').value = data.supervisor_email;
+                    document.getElementById('studentContactNo').innerText = data.mobile_number;
+                    document.getElementById('supervisorName').value = data.supervisor_name;
+                    document.getElementById('supervisorEmail').value = data.supervisor_email;
                 })
                 .catch(error => console.error('Error:', error));
         }
@@ -53,7 +53,7 @@
     </header>
 
     <div class="container body-content">
-        <h2>Welcome : <span id="studentName"></span></h2>
+        <h2>Welcome : <span id="studentNameValue"></span></h2>
         <br>
         <div class="panel-group">
             <div class="panel panel-default">
@@ -63,7 +63,7 @@
                         <label class="control-label col-md-2" for="cohort">Cohort</label>
                         <div class="col-md-10">
                             <input id="cohort" name="cohort" type="hidden" value="" />
-                            <span id="cohort"></span>
+                            <span id="cohortValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="cohort"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -73,7 +73,7 @@
                         <label class="control-label col-md-2" for="Intern_Period">Intern Period</label>
                         <div class="col-md-10">
                             <input id="Intern_Period" name="Intern_Period" type="hidden" value="" />
-                            <span id="intern_period"></span>
+                            <span id="internPeriodValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="cohort"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -83,7 +83,7 @@
                         <label class="control-label col-md-2" for="applyStatus">Status</label>
                         <div class="col-md-10">
                             <input id="applyStatus" name="applyStatus" type="hidden" value="" />
-                            <span id="status"></span>
+                            <span id="statusValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="applyStatus"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -92,7 +92,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2" for="remark">Remark</label>
                         <div class="col-md-10 important-text">
-                            <input id="remark" name="remark" type="hidden" value="" />
+                            <input id="remarkValue" name="remark" type="hidden" value="" />
                             <span class="message"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="remark"
                                 data-valmsg-replace="true"></span>
@@ -110,7 +110,7 @@
                         <label class="control-label col-md-2" for="studentName">Student Name</label>
                         <div class="col-md-10">
                             <input id="studentName" name="studentName" type="hidden" value="" />
-                            <span id="student_name"></span>
+                            <span id="studentNameValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="studentName"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -120,7 +120,7 @@
                         <label class="control-label col-md-2" for="studentId">Student ID</label>
                         <div class="col-md-10">
                             <input id="studentId" name="studentId" type="hidden" value="" />
-                            <span id="student_id"></span>
+                            <span id="studentIdValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="studentId"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -130,7 +130,7 @@
                         <label class="control-label col-md-2" for="nric">NRIC No.</label>
                         <div class="col-md-10">
                             <input id="nric" name="nric" type="hidden" value="" />
-                            <span id="student_NRIC"></span>
+                            <span id="nricValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="nric"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -140,7 +140,7 @@
                         <label class="control-label col-md-2" for="gender">Gender</label>
                         <div class="col-md-10">
                             <input id="gender" name="gender" type="hidden" value="" />
-                            <span id="student_gender"></span>
+                            <span id="genderValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="gender"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -150,7 +150,7 @@
                         <label class="control-label col-md-2" for="programme">Programme</label>
                         <div class="col-md-10">
                             <input id="programme" name="programme" type="hidden" value="" />
-                            <span id="student_programme"></span>
+                            <span id="programmeValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="programme"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -160,7 +160,7 @@
                         <label class="control-label col-md-2" for="studentEmail">Student Email</label>
                         <div class="col-md-10">
                             <input id="studentEmail" name="studentEmail" type="hidden" value="" />
-                            <span id="student_email"></span>
+                            <span id="studentEmailValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="studentEmail"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -170,7 +170,7 @@
                         <label class="control-label col-md-2" for="contactNo">Mobile Number</label>
                         <div class="col-md-10">
                             <input id="contactNo" name="contactNo" type="hidden" value="" />
-                            <span id="mobile_number"></span>
+                            <span id="contactNoValue"></span>
                             <span class="field-validation-valid text-danger" data-valmsg-for="contactNo"
                                 data-valmsg-replace="true"></span>
                         </div>
@@ -196,7 +196,7 @@
                             <div class="col-md-10">
                                 <input class="form-control text-box single-line" id="ucSupervisor" name="ucSupervisor"
                                     type="text" value="" />
-                                <span id="supervisor_name"></span>
+                                <span id="supervisorNameValue"></span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisor"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -211,7 +211,7 @@
                                 <input class="form-control text-box single-line" id="ucSupervisorEmail"
                                     name="ucSupervisorEmail" placeholder="e.g: xxxxx@tarc.edu.my" readonly="readonly"
                                     type="email">
-                                <span id="supervisor_email"></span>
+                                <span id="supervisorEmailValue"></span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisorEmail"
                                     data-valmsg-replace="true"></span>
                             </div>
