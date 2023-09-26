@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<center>
+	<font color="black" size="4" style="font-family: avenir">
+		<h1>Student Register</h1>
+    </center>
+
+		<body>
+			<form id="signupForm" action="/addcand" autocomplete="on" method = "POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+
+            <div style="border:black; border-width:2px; border-style:solid;">
+                
+                <h3>Academic Level</h3>
+
+		  		Level: <select id="dropdown1" name="level"> <option>Select Level</option>
+                    <option value="diploma">Diploma</option>
+                    <option value="Bachelor">Bachelor</option>
+                  </select>
+                  <br><br>
+                
+                Cohort: <select id="dropdown2" name="cohort"> <option>Select One</option>
+                    <option value="intake_1">2020 July Intake</option>
+                    <option value="intake_2">2021 July Intake</option>
+                    <option value="intake_3">2022 July Intake</option>
+                  </select>
+                  <br><br>
+
+				Programme: <select id="dropdown3" name="programme"> <option>Select One</option>
+                    <option value="rds">RDS</option>
+                    <option value="rst">RST</option>
+                    <option value="rit">RSW</option>
+                  </select>
+                  <br><br>
+
+		  		Tutorial Group: <input style="height:25px;font-size:14pt;color:grey;" type="t_group" id="t_group" name="t_group" ><br><br>
+
+		  		Student ID: <input style="height:25px;font-size:14pt;color:grey;" type="s_id" id="s_id" name="s_id"><br><br>
+
+		  		Student Email: <input style="height:25px;font-size:14pt;color:grey;" type="s_email" id="s_email" name="s_email"><br><br>
+
+		  		CGPA: <input style="height:25px;font-size:14pt;color:grey;" type="cgpa" id="cgpa" name="cgpa"><br><br>
+            
+          UC Supervisor: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor" id="supervisor" name="supervisor"><br><br>
+            
+            </div>
+
+            <br>
+            
+            <div style="border:black; border-width:2px; border-style:solid;">
+            
+                <h3>Personal Information</h3>
+
+                Full Name: <input style="height:25px;font-size:14pt;color:grey;" type="full_name" id="full_name" name="full_name" ><br><br>
+
+                NIRC: <input style="height:25px;font-size:14pt;color:grey;" type="ic" id="ic" name="ic" ><br><br>
+            
+                Gender: <select id="dropdown4" name="gender"> <option>Select One</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                  <br><br>
+
+            </div>
+
+            <br>
+
+            <div style="border:black; border-width:2px; border-style:solid;">
+            
+                <h3>Student Contact Information</h3>
+
+                Personal Email: <input style="height:25px;font-size:14pt;color:grey;" type="p_email" id="p_email" name="p_email" ><br><br>
+
+                Address: <input style="height:25px;font-size:14pt;color:grey;" type="address" id="address" name="address" ><br><br>
+            
+                Phone Number: <input style="height:25px;font-size:14pt;color:grey;" type="p_number" id="p_number" name="p_number" ><br><br>
+
+                Parent Phone Number: <input style="height:25px;font-size:14pt;color:grey;" type="pa_number" id="pa_number" name="pa_number" ><br><br>
+            
+            </div>
+
+            <br>
+
+            <div style="border:black; border-width:2px; border-style:solid;">
+            
+                <h3>Technical Knowledge</h3>
+
+                Programming Knowledge: <input style="height:25px;font-size:14pt;color:grey;" type="p_knowledge" id="p_knowledge" name="p_knowledge" ><br><br>
+
+                Database Knowledge: <input style="height:25px;font-size:14pt;color:grey;" type="d_knowledge" id="d_knowledge" name="d_knowledge" ><br><br>
+            
+                Networking Knowledge: <input style="height:25px;font-size:14pt;color:grey;" type="n_knowledge" id="n_knowledge" name="n_knowledge" ><br><br>
+            
+            </div>
+            
+            <br>
+
+            <div style="border:black; border-width:2px; border-style:solid;">
+        
+                <center>
+                
+                <h3>Declaration</h3>
+
+                <p style="color:Red">I UNDERSTAND THAT I MUST COMPLETE THE FULL DURATION OF THE INDUSTRIAL TRAINING PROGRAMME PERIOD SATISFACTORILY IN ORDER TO PASS THE BAIT305C / AMIT3205 COURSE. I AGREE TO ABIDE BY THE RULES AND REGULATIONS OF THE COMPANY CONCERNED AND I WILL ALWAYS UPHOLD THE GOOD NAME OF THE UNIVERSITY COLLEGE AT ALL TIMES DURING THE WHOLE DURATION OF THE INDUSTRIAL TRAINING PROGRAMME.</p>
+                
+                <button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Confirm</button>
+                
+                <button type="button" onclick="cancelForm()" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">Cancel</button><br><br>
+
+                </center>
+
+            </div>
+    
+			</form>
+
+      <script>
+        
+        function validateForm() {
+            
+            var t_group = document.getElementById("t_group").value;
+            var s_id = document.getElementById("s_id").value;
+            var s_email = document.getElementById("s_email").value;
+            var cgpa = document.getElementById("cgpa").value;
+            var supervisor = document.getElementById("supervisor").value;
+            var full_name = document.getElementById("full_name").value;
+            var ic = document.getElementById("ic").value;
+            var p_email = document.getElementById("p_email").value;
+            var address = document.getElementById("address").value;
+            var p_number = document.getElementById("p_number").value;
+            var pa_number = document.getElementById("pa_number").value;
+            var p_knowledge = document.getElementById("p_knowledge").value;
+            var d_knowledge = document.getElementById("d_knowledge").value;
+            var n_knowledge = document.getElementById("n_knowledge").value;
+            
+
+            // Check if the input fields are empty
+            if (t_group === "") {
+                alert("Tutorial Group is required.");
+                return false; 
+            }
+
+            if (s_id === "") {
+                alert("Student ID is required.");
+                return false; 
+            }
+
+            if (s_email === "") {
+                alert("Student Email is required.");
+                return false; 
+            }
+
+            if (cgpa === "") {
+                alert("CGPA is required.");
+                return false; 
+            }
+
+            if (supervisor === "") {
+                alert("Supervisor is required.");
+                return false; 
+            }
+
+            if (full_name === "") {
+                alert("Full Name is required.");
+                return false; 
+            }
+
+            if (ic === "") {
+                alert("IC Number is required.");
+                return false; 
+            }
+
+            if (p_email === "") {
+                alert("Personal Email is required.");
+                return false; 
+            }
+
+            if (address === "") {
+                alert("Address is required.");
+                return false; 
+            }
+
+            if (p_number === "") {
+                alert("Phone Number is required.");
+                return false; 
+            }
+
+            if (pa_number === "") {
+                alert("Parent Phone Number is required.");
+                return false; 
+            }
+
+            if (p_knowledge === "") {
+                alert("Programming Knowledge is required.");
+                return false; 
+            }
+
+            if (d_knowledge === "") {
+                alert("Database Knowledge is required.");
+                return false; 
+            }
+
+            if (n_knowledge === "") {
+                alert("Networking Knowledge is required.");
+                return false; 
+            }
+
+            return true; 
+        }
+
+        function cancelForm() {
+                window.location.href = "homepage.html"; // Redirect to the home page for example
+            }
+
+    </script>
+
+		</body>
+
+	</font>
+
+</html>
+
