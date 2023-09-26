@@ -33,7 +33,7 @@ def home():
 
 @app.route("/fetchdata", methods=['GET', 'POST'])
 def ReadData():
-    student_id = get_student_data()  # You should implement get_student_data()
+    student_id = request.form.get('studentId')
     return render_template('student.html', student_id=student_id)
 
 
