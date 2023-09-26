@@ -39,7 +39,7 @@ def fetch_student_data():
                 cohort, intern_period, status, remark, 
                 student_name, student_id, student_NRIC, 
                 student_gender, student_email, mobile_number, 
-                supervior_name, supervisor_email
+                supervisor_name, supervisor_email
             FROM assignment
             WHERE student_id = %s
         """
