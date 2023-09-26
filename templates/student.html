@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index - TAR UC ITP</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content.css') }}">
+
+    <script>
+        window.onload = function () {
+            document.getElementById("/fetchdata").submit();
+        };
+    </script>
+
 </head>
 
 <body>
@@ -89,8 +96,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-2" for="studentId">Student ID</label>
                             <div class="col-md-10">
-                                <input id="studentId" name="studentId" type="hidden" value="" />
-                                <span class="message">{{ student_id }}</span>
+                                <input id="studentId" name="studentId" type="hidden" value="{{ student_id }}" />
+                                <span class="message"></span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="studentId"
                                     data-valmsg-replace="true"></span>
                             </div>
