@@ -32,50 +32,57 @@ def home():
 
 @app.route("/fetchdata", methods=['GET', 'POST'])
 def fetch_student_data():
-    # Define the SQL query to fetch data from the "assignment" table
-    sql_query = """
-        SELECT 
-            cohort, intern_period, status, remark, 
-            student_name, student_id, student_NRIC, 
-            student_gender, student_email, mobile_number, 
-            supervior_name, supervisor_email, 
-            company_name, company_address, monthly_allowance, 
-            company_supervisor_name, company_supervisor_email
-        FROM assignment
-        WHERE student_id = 123456
-    """
+    try:
+        # Define the SQL query to fetch data from the "assignment" table
+        sql_query = """
+            SELECT 
+                cohort, intern_period, status, remark, 
+                student_name, student_id, student_NRIC, 
+                student_gender, student_email, mobile_number, 
+                supervior_name, supervisor_email, 
+                company_name, company_address, monthly_allowance, 
+                company_supervisor_name, company_supervisor_email
+            FROM assignment
+            WHERE student_id = 123456
+        """
 
-    cursor = db_conn.cursor()
-    cursor.execute(sql_query, (student_id,))
-    student_data = cursor.fetchone()
+        cursor = db_conn.cursor()
+        cursor.execute(sql_query, (student_id,))
+        student_data = cursor.fetchone()
 
-    if student_data:
-        # Convert the fetched data into a dictionary
-        student_dict = {
-            "cohort": student_data[0],
-            "intern_period": student_data[1],
-            "status": student_data[2],
-            "remark": student_data[3],
-            "student_name": student_data[4],
-            "student_id": student_data[5],
-            "student_NRIC": student_data[6],
-            "student_gender": student_data[7],
-            "student_email": student_data[8],
-            "mobile_number": student_data[9],
-            "supervior_name": student_data[10],
-            "supervisor_email": student_data[11],
-            "company_name": student_data[12],
-            "company_address": student_data[13],
-            "monthly_allowance": student_data[14],
-            "company_supervisor_name": student_data[15],
-            "company_supervisor_email": student_data[16]
-        }
-        print("Fetched Student Data:", student_dict)
+        if student_data:
+            # Convert the fetched data into a dictionary
+            student_dict = {
+                "cohort": student_data[0],
+                "intern_period": student_data[1],
+                "status": student_data[2],
+                "remark": student_data[3],
+                "student_name": student_data[4],
+                "student_id": student_data[5],
+                "student_NRIC": student_data[6],
+                "student_gender": student_data[7],
+                "student_email": student_data[8],
+                "mobile_number": student_data[9],
+                "supervior_name": student_data[10],
+                "supervisor_email": student_data[11],
+                "company_name": student_data[12],
+                "company_address": student_data[13],
+                "monthly_allowance": student_data[14],
+                "company_supervisor_name": student_data[15],
+                "company_supervisor_email": student_data[16]
+            }
 
-        return render_template('student.html', student_data=student_dict)
-    else:
-        return "Student not found"
+            # Print the data to check before rendering
+            print("Fetched Student Data:", student_dict)
 
+            return render_template('student.html', student_data=student_dict)
+        else:
+            return "Student not found"
+
+    except Exception as e:
+        # Handle exceptions here, you can print the error message for debugging
+        print("An error occurred:", str(e))
+        return "An error occurred while fetching student data"
 
 @app.route("/addcompany", methods=['POST'])
 def AddCompany():
@@ -92,12 +99,13 @@ def AddCompany():
     insert_sql = "INSERT INTO assignment (company_name, company_address, monthly_allowance, company_supervisor_name, company_supervisor_email) VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
-    if company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "" and hired_evidence.filename == "" :
+    if company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "" and hired_evidence.filename == "":
         return "Please select a file"
 
     try:
 
-        cursor.execute(insert_sql, (company_name, company_address, monthly_allowance, company_supervisor_name, company_supervisor_email))
+        cursor.execute(insert_sql, (company_name, company_address,
+                       monthly_allowance, company_supervisor_name, company_supervisor_email))
         db_conn.commit()
         # Uplaod image file in S3 #
         company_acceptance_form_in_s3 = "com-acceptance-form" + \
