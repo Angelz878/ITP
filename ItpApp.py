@@ -35,7 +35,7 @@ def fetch_student_data():
             SELECT 
                 cohort, intern_period, status, remark, 
                 student_name, student_id, student_NRIC, 
-                student_gender, student_email, mobile_number, 
+                student_gender, student_programme, student_email, mobile_number, 
                 supervisor_name, supervisor_email
             FROM assignment
             WHERE student_id = %s
@@ -56,10 +56,11 @@ def fetch_student_data():
                 "student_id": student_data[5],
                 "student_NRIC": student_data[6],
                 "student_gender": student_data[7],
-                "student_email": student_data[8],
-                "mobile_number": student_data[9],
-                "supervisor_name": student_data[10],
-                "supervisor_email": student_data[11],
+                "student_programme": student_data[8],
+                "student_email": student_data[9],
+                "mobile_number": student_data[10],
+                "supervisor_name": student_data[11],
+                "supervisor_email": student_data[12],
             }
 
             return jsonify(student_dict)
