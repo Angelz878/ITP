@@ -67,7 +67,7 @@ def fetch_student_data():
             return "Student not found"
 
 @app.route("/updatesupervisor", methods=['POST'])
-def AddCompany():
+def UpdateSupervisor():
     student_id = 123456
     supervisor_name = request.form['companyName']
     supervisor_email = request.form['companyAddress']
