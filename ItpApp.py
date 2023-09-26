@@ -56,10 +56,11 @@ def fetch_student_data():
                 "student_id": student_data[5],
                 "student_NRIC": student_data[6],
                 "student_gender": student_data[7],
-                "student_email": student_data[8],
-                "mobile_number": student_data[9],
-                "supervior_name": student_data[10],
-                "supervisor_email": student_data[11],
+                "student_programme": student_data[8],
+                "student_email": student_data[9],
+                "mobile_number": student_data[10],
+                "supervisor_name": student_data[11],
+                "supervisor_email": student_data[12],
             }
 
             return jsonify(student_dict)
