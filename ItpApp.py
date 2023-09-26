@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify  
 from pymysql import connections
 import os
 import boto3
@@ -65,7 +65,7 @@ def fetch_student_data():
                 "supervisor_email": student_data[11],
             }
 
-            return render_template('student.html', student_data=student_dict)
+            return jsonify(student_dict)
         else:
             return "Student not found"
 
