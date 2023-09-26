@@ -153,8 +153,8 @@ def AddCompany():
         #         custombucket,
         #         hired_evidence_in_s3)
 
-        except Exception as e:
-            return str(e)
+        # except Exception as e:
+        #     return str(e)
 
     finally:
         cursor.close()
