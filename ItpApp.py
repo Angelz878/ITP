@@ -31,6 +31,12 @@ def home():
 #     return render_template('www.intellipaat.com')
 
 
+@app.route("/fetchdata", methods=['GET', 'POST'])
+def ReadData():
+    student_id = get_student_data()  # You should implement get_student_data()
+    return render_template('student.html', student_id=student_id)
+
+
 @app.route("/addcompany", methods=['POST'])
 def AddCompany():
     company_name = request.form['companyName']
@@ -46,7 +52,7 @@ def AddCompany():
     insert_sql = "INSERT INTO assignment (company_name, company_address, monthly_allowance, company_supervisor_name, company_supervisor_email) VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
-    if (company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "") or hired_evidence.filename == "" :
+    if company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "" and hired_evidence.filename == "" :
         return "Please select a file"
 
     try:
