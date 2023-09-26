@@ -54,96 +54,104 @@ def AddCompany():
         cursor.execute(insert_sql, (company_name, company_address, monthly_allowance, company_supervisor_name, company_supervisor_email))
         db_conn.commit()
         # Uplaod image file in S3 #
-        company_acceptance_form_in_s3 = "com-acceptance-form" + \
-            str(company_name) + "_image_file"
-        s3 = boto3.resource('s3')
+        
+    
+        s3 = boto3.client('s3')
+        buckets = s3.list_buckets()
 
-        try:
-            print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(
-                Key=company_acceptance_form_in_s3, Body=company_acceptance_form)
-            bucket_location = boto3.client(
-                's3').get_bucket_location(Bucket=custombucket)
-            s3_location = (bucket_location['LocationConstraint'])
+        for bucket in buckets['Buckets']:
+            print('Bucket Name:', bucket['Name'])
+        
+        # company_acceptance_form_in_s3 = "com-acceptance-form" + \
+        #     str(company_name) + "_image_file"
+        # s3 = boto3.resource('s3')
 
-            if s3_location is None:
-                s3_location = ''
-            else:
-                s3_location = '-' + s3_location
+        # try:
+        #     print("Data inserted in MySQL RDS... uploading image to S3...")
+        #     s3.Bucket(custombucket).put_object(
+        #         Key=company_acceptance_form_in_s3, Body=company_acceptance_form)
+        #     bucket_location = boto3.client(
+        #         's3').get_bucket_location(Bucket=custombucket)
+        #     s3_location = (bucket_location['LocationConstraint'])
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
-                s3_location,
-                custombucket,
-                company_acceptance_form_in_s3)
+        #     if s3_location is None:
+        #         s3_location = ''
+        #     else:
+        #         s3_location = '-' + s3_location
 
-        except Exception as e:
-            return str(e)
+        #     object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+        #         s3_location,
+        #         custombucket,
+        #         company_acceptance_form_in_s3)
 
-        parent_acknowledge_form_in_s3 = "parent-ack-form" + \
-            str(company_name) + "_image_file"
-        s3 = boto3.resource('s3')
-        try:
-            s3.Bucket(custombucket).put_object(
-                Key=parent_acknowledge_form_in_s3, Body=parent_acknowledge_form)
-            bucket_location = boto3.client(
-                's3').get_bucket_location(Bucket=custombucket)
-            s3_location = (bucket_location['LocationConstraint'])
+        # except Exception as e:
+        #     return str(e)
 
-            if s3_location is None:
-                s3_location = ''
-            else:
-                s3_location = '-' + s3_location
+        # parent_acknowledge_form_in_s3 = "parent-ack-form" + \
+        #     str(company_name) + "_image_file"
+        # s3 = boto3.resource('s3')
+        # try:
+        #     s3.Bucket(custombucket).put_object(
+        #         Key=parent_acknowledge_form_in_s3, Body=parent_acknowledge_form)
+        #     bucket_location = boto3.client(
+        #         's3').get_bucket_location(Bucket=custombucket)
+        #     s3_location = (bucket_location['LocationConstraint'])
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
-                s3_location,
-                custombucket,
-                parent_acknowledge_form_in_s3)
+        #     if s3_location is None:
+        #         s3_location = ''
+        #     else:
+        #         s3_location = '-' + s3_location
 
-        except Exception as e:
-            return str(e)
+        #     object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+        #         s3_location,
+        #         custombucket,
+        #         parent_acknowledge_form_in_s3)
 
-        letter_of_indemnity_in_s3 = "letter-of-indemnity-form" + \
-            str(company_name) + "_image_file"
-        s3 = boto3.resource('s3')
-        try:
-            s3.Bucket(custombucket).put_object(
-                Key=letter_of_indemnity_in_s3, Body=letter_of_indemnity)
-            bucket_location = boto3.client(
-                's3').get_bucket_location(Bucket=custombucket)
-            s3_location = (bucket_location['LocationConstraint'])
+        # except Exception as e:
+        #     return str(e)
 
-            if s3_location is None:
-                s3_location = ''
-            else:
-                s3_location = '-' + s3_location
+        # letter_of_indemnity_in_s3 = "letter-of-indemnity-form" + \
+        #     str(company_name) + "_image_file"
+        # s3 = boto3.resource('s3')
+        # try:
+        #     s3.Bucket(custombucket).put_object(
+        #         Key=letter_of_indemnity_in_s3, Body=letter_of_indemnity)
+        #     bucket_location = boto3.client(
+        #         's3').get_bucket_location(Bucket=custombucket)
+        #     s3_location = (bucket_location['LocationConstraint'])
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
-                s3_location,
-                custombucket,
-                letter_of_indemnity_in_s3)
+        #     if s3_location is None:
+        #         s3_location = ''
+        #     else:
+        #         s3_location = '-' + s3_location
 
-        except Exception as e:
-            return str(e)
+        #     object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+        #         s3_location,
+        #         custombucket,
+        #         letter_of_indemnity_in_s3)
 
-        hired_evidence_in_s3 = "hired-evidence-form" + \
-            str(company_name) + "_image_file"
-        s3 = boto3.resource('s3')
-        try:
-            s3.Bucket(custombucket).put_object(
-                Key=hired_evidence_in_s3, Body=hired_evidence)
-            bucket_location = boto3.client(
-                's3').get_bucket_location(Bucket=custombucket)
-            s3_location = (bucket_location['LocationConstraint'])
+        # except Exception as e:
+        #     return str(e)
 
-            if s3_location is None:
-                s3_location = ''
-            else:
-                s3_location = '-' + s3_location
+        # hired_evidence_in_s3 = "hired-evidence-form" + \
+        #     str(company_name) + "_image_file"
+        # s3 = boto3.resource('s3')
+        # try:
+        #     s3.Bucket(custombucket).put_object(
+        #         Key=hired_evidence_in_s3, Body=hired_evidence)
+        #     bucket_location = boto3.client(
+        #         's3').get_bucket_location(Bucket=custombucket)
+        #     s3_location = (bucket_location['LocationConstraint'])
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
-                s3_location,
-                custombucket,
-                hired_evidence_in_s3)
+        #     if s3_location is None:
+        #         s3_location = ''
+        #     else:
+        #         s3_location = '-' + s3_location
+
+        #     object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+        #         s3_location,
+        #         custombucket,
+        #         hired_evidence_in_s3)
 
         except Exception as e:
             return str(e)
