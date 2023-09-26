@@ -30,7 +30,7 @@
 
     <form action="/fetchdata" autocomplete="on" method="POST">
         <div class="container body-content">
-            <h2>Welcome :</h2>
+            <h2>Welcome : {{ student_data['student_name'] }}</h2>
             <br>
             <div class="panel-group">
                 <div class="panel panel-default">
@@ -40,7 +40,7 @@
                             <label class="control-label col-md-2" for="cohort">Cohort</label>
                             <div class="col-md-10">
                                 <input id="cohort" name="cohort" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ student_data['cohort'] }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="cohort"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -96,8 +96,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-2" for="studentId">Student ID</label>
                             <div class="col-md-10">
-                                <input id="studentId" name="studentId" type="hidden" value="{{ student_id }}" />
-                                <span class="message"></span>
+                                <input id="studentId" name="studentId" type="hidden" value="" />
+                                <span class="message">{{ student_data['cohort'] }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="studentId"
                                     data-valmsg-replace="true"></span>
                             </div>

@@ -30,11 +30,49 @@ def home():
 # def about():
 #     return render_template('www.intellipaat.com')
 
-
 @app.route("/fetchdata", methods=['GET', 'POST'])
-def ReadData():
-    student_id = request.form.get('studentId')
-    return render_template('student.html', student_id=student_id)
+def fetch_student_data():
+    # Define the SQL query to fetch data from the "assignment" table
+    sql_query = """
+        SELECT 
+            cohort, intern_period, status, remark, 
+            student_name, student_id, student_NRIC, 
+            student_gender, student_email, mobile_number, 
+            supervior_name, supervisor_email, 
+            company_name, company_address, monthly_allowance, 
+            company_supervisor_name, company_supervisor_email
+        FROM assignment
+        WHERE student_id = 123456
+    """
+
+    cursor = db_conn.cursor()
+    cursor.execute(sql_query, (student_id,))
+    student_data = cursor.fetchone()
+
+    if student_data:
+        # Convert the fetched data into a dictionary
+        student_dict = {
+            "cohort": student_data[0],
+            "intern_period": student_data[1],
+            "status": student_data[2],
+            "remark": student_data[3],
+            "student_name": student_data[4],
+            "student_id": student_data[5],
+            "student_NRIC": student_data[6],
+            "student_gender": student_data[7],
+            "student_email": student_data[8],
+            "mobile_number": student_data[9],
+            "supervior_name": student_data[10],
+            "supervisor_email": student_data[11],
+            "company_name": student_data[12],
+            "company_address": student_data[13],
+            "monthly_allowance": student_data[14],
+            "company_supervisor_name": student_data[15],
+            "company_supervisor_email": student_data[16]
+        }
+        return render_template('student.html', student_data=student_dict)
+    else:
+        return "Student not found"
 
 
 @app.route("/addcompany", methods=['POST'])
