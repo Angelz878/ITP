@@ -43,7 +43,7 @@ def AddCompany():
     letter_of_indemnity = request.files['attchLetterOfIndemnity']
     hired_evidence = request.files['attchHiredEvidence']
 
-    insert_sql = "INSERT INTO assignment VALUES (%s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO assignment VALUES (%s, %s, %d, %s, %s)"
     cursor = db_conn.cursor()
 
     if (company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "") or hired_evidence.filename == "" :
