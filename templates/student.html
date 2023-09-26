@@ -10,11 +10,6 @@
 </head>
 
 <body>
-    <script>
-        window.onload = function () {
-            document.getElementById("/fetchdata").submit();
-        };
-    </script>
 
     <header>
         <nav class="navbar">
@@ -30,7 +25,7 @@
 
     <form action="/fetchdata" autocomplete="on" method="POST">
         <div class="container body-content">
-            <h2>Welcome :</h2>
+            <h2>Welcome : {{ student_name }}</h2>
             <br>
             <div class="panel-group">
                 <div class="panel panel-default">
@@ -40,7 +35,7 @@
                             <label class="control-label col-md-2" for="cohort">Cohort</label>
                             <div class="col-md-10">
                                 <input id="cohort" name="cohort" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ cohort }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="cohort"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -50,7 +45,7 @@
                             <label class="control-label col-md-2" for="Intern_Period">Intern Period</label>
                             <div class="col-md-10">
                                 <input id="Intern_Period" name="Intern_Period" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ intern_period }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="cohort"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -60,7 +55,7 @@
                             <label class="control-label col-md-2" for="applyStatus">Status</label>
                             <div class="col-md-10">
                                 <input id="applyStatus" name="applyStatus" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ status }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="applyStatus"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -70,7 +65,7 @@
                             <label class="control-label col-md-2" for="remark">Remark</label>
                             <div class="col-md-10 important-text">
                                 <input id="remark" name="remark" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ remark }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="remark"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -87,7 +82,7 @@
                             <label class="control-label col-md-2" for="studentName">Student Name</label>
                             <div class="col-md-10">
                                 <input id="studentName" name="studentName" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ student_name }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="studentName"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -97,7 +92,7 @@
                             <label class="control-label col-md-2" for="studentId">Student ID</label>
                             <div class="col-md-10">
                                 <input id="studentId" name="studentId" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ student_id }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="studentId"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -107,7 +102,7 @@
                             <label class="control-label col-md-2" for="nric">NRIC No.</label>
                             <div class="col-md-10">
                                 <input id="nric" name="nric" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ student_NRIC }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="nric"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -117,7 +112,7 @@
                             <label class="control-label col-md-2" for="gender">Gender</label>
                             <div class="col-md-10">
                                 <input id="gender" name="gender" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ student_gender }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="gender"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -127,7 +122,7 @@
                             <label class="control-label col-md-2" for="programme">Programme</label>
                             <div class="col-md-10">
                                 <input id="programme" name="programme" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ student_programme }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="programme"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -137,7 +132,7 @@
                             <label class="control-label col-md-2" for="studentEmail">Student Email</label>
                             <div class="col-md-10">
                                 <input id="studentEmail" name="studentEmail" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ student_email }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="studentEmail"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -147,7 +142,7 @@
                             <label class="control-label col-md-2" for="contactNo">Mobile Number</label>
                             <div class="col-md-10">
                                 <input id="contactNo" name="contactNo" type="hidden" value="" />
-                                <span class="message"></span>
+                                <span class="message">{{ mobile_number }}</span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="contactNo"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -173,7 +168,7 @@
                                 <div class="col-md-10">
                                     <input class="form-control text-box single-line" id="ucSupervisor"
                                         name="ucSupervisor" type="text" value="" />
-                                    <span class="messages"></span>
+                                    <span class="messages">{{ supervisor_name }}</span>
                                     <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisor"
                                         data-valmsg-replace="true"></span>
                                 </div>
@@ -188,7 +183,7 @@
                                     <input class="form-control text-box single-line" id="ucSupervisorEmail"
                                         name="ucSupervisorEmail" placeholder="e.g: xxxxx@tarc.edu.my"
                                         readonly="readonly" type="email">
-                                    <span class="messages"></span>
+                                    <span class="messages">{{ supervisor_email }}</span>
                                     <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisorEmail"
                                         data-valmsg-replace="true"></span>
                                 </div>
