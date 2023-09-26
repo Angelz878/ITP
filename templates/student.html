@@ -15,6 +15,7 @@
                 .then(response => response.json())
                 .then(data => {
                     // Update the page content with the fetched data
+                    document.getElementById('GreetingName').innerText = data.student_name;
                     document.getElementById('cohort').innerText = data.cohort;
                     document.getElementById('Intern_Period').innerText = data.intern_period;
                     document.getElementById('applyStatus').innerText = data.status;
@@ -54,7 +55,7 @@
     </header>
 
     <div class="container body-content">
-        <h2>Welcome : <span id="studentName"></span></h2>
+        <h2>Welcome : <span id="GreetingName"></span></h2>
         <br>
         <div class="panel-group">
             <div class="panel panel-default">
