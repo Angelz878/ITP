@@ -40,7 +40,8 @@
                 .then(response => response.json())
                 .then(data => {
                     // Update the page content with the fetched data
-                    document.getElementById('companyName').innerText = data.company_name;
+                    const companyNameInput = document.getElementById('companyName');
+                    companyNameInput.value = data.company_name;
                     document.getElementById('companyAddress').innerText = data.company_address;
                     document.getElementById('allowance').innerText = data.monthly_allowance;
                     document.getElementById('companySupervisor').innerText = data.company_supervisor_name;
@@ -256,7 +257,7 @@
                                     <div style="display:inline-block">
                                         <input class="form-control long-textbox text-box single-line" id="companyName"
                                             name="companyName" type="text" value="" />
-                                        
+
                                     </div>
                                     <span id="CompanyName"></span>
                                 </div>
