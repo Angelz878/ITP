@@ -36,7 +36,7 @@ def home():
     # Get the student's name from the session
     name = session.get("name")
 
-    return render_template('index.html', name=name)
+    return render_template('index.html')
 
 # login page
 @app.route('/login', methods =['GET', 'POST'])
