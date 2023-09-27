@@ -285,7 +285,7 @@ def UpdateCompany():
         except Exception as e:
             return str(e)
 
-        update_sql = "UPDATE assignment SET com_acceptance_form_url = %s, parent_ack_form_url = %s, letter_of_indemnity_url = %s, hired_evidence_url = %s WHERE student_id = %s"
+        update_sql = "UPDATE assignment SET com_acceptance_form_url = %s, parent_ack_form_url = %s, letter_of_indemnity_url = %s, hired_evidence_url = %s, status='Applied' WHERE student_id = %s"
         cursor = db_conn.cursor()
 
         cursor.execute(update_sql, (object_url_company_acceptance, object_url_parent_acknowledge,
