@@ -1,9 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from flask_session import Session
 from pymysql import connections
 import re
   
 app = Flask(__name__)
-  
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+bucket = custombucket
+region = customregion
+
 # database connection
 # server
 db_conn = connections.Connection(
@@ -13,38 +20,50 @@ db_conn = connections.Connection(
     password=custompass,
     db=customdb
 )
+output = {}
+table = 'assignment'
 
+# home page
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('login.html')
+    # check if the users exist or not
+    if not session.get("email"):
+        # if not there in the session then redirect to the login page
+        return redirect("/login")
+    return render_template('index.html')
 
-@app.route('/login.html', methods =['GET', 'POST'])
+# login page
+@app.route('/login', methods =['GET', 'POST'])
 def login():
     # delcare empty message variable
     mesage = ''
 
-    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+    # if form is submited
+    if request.method == 'POST' and 'email':
+        # record the email
+        session['email'] = request.form.get("email")
+        # redirect to the main page
         email = request.form['email']
-        password = request.form['password']
+        ic_number = request.form['ic_number']
+        # fetch query result as dictionaries
         cursor = db_conn.cursor(connections.cursor.DictCursor)
-        cursor.execute('SELECT * FROM user WHERE email = % s AND password = % s', (email, password, ))
-        user = cursor.fetchone()
-        if user:
+        # query
+        cursor.execute('SELECT * FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
+        assignment = cursor.fetchone()
+        # checks if a user with the provided email and password was found in the database.
+        if assignment:
             session['loggedin'] = True
-            session['userid'] = user['userid']
-            session['email'] = user['email']
-            session['password'] = user['password']
-            mesage = 'Logged in successfully !'
-            return render_template('user.html', mesage = mesage)
+            session['email'] = assignment['email']
+            session['ic_number'] = assignment['ic_number']
+            message = 'Logged in successfully !'
+            return render_template('user.html', message = message)
         else:
-            mesage = 'Please enter correct email / password !'
-    return render_template('login.html', mesage = mesage)
+            mesage = 'Please enter correct email / ic number!'
+    return render_template('login.html', message = message)
   
 @app.route('/logout')
 def logout():
-    session.pop('loggedin', None)
-    session.pop('userid', None)
-    session.pop('email', None)
+    session["email"] = None
     return redirect(url_for('login'))
   
 # @app.route('/register', methods =['GET', 'POST'])
