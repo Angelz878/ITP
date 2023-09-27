@@ -274,7 +274,7 @@ def AddCandidate():
 
     try:
         # Execute SQL insert statement
-        cursor.execute(insert_sql, (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark,student_address, mobile_number, status))
+        cursor.execute(insert_sql, (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark,student_address, mobile_number))
 
         db_conn.commit()
 
