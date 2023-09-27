@@ -219,9 +219,9 @@ def AddCompany():
 @app.route("/addcand", methods=['POST'])
 def AddCandidate():
     # Extract form data from the registration form
-    level = request.form.get['level']
-    cohort = request.form.get['cohort']
-    student_programme = request.form.get['student_programme']
+    level = request.form.get('level')
+    cohort = request.form.get('cohort')
+    student_programme = request.form.get('student_programme')
     intern_period = request.form['intern_period']
     student_group = request.form['student_group']
     student_id = request.form['student_id']
@@ -231,7 +231,7 @@ def AddCandidate():
     supervisor_email = request.form['supervisor_email']
     student_name = request.form['student_name']
     student_NRIC = request.form['student_NRIC']
-    student_gender = request.form.get['student_gender']
+    student_gender = request.form.get('student_gender')
     remark = request.form['remark']
     p_email = request.form['p_email']
     student_address = request.form['student_address']
