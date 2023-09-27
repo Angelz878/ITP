@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session  
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from flask_session import Session
 from pymysql import connections
 import os
@@ -39,12 +39,24 @@ def RedirectHome():
 def RedirectLogin():
     return render_template('login.html')
 
+@app.route("/redirectregister", methods=['GET', 'POST'])
+def RedirectRegister():
+    return render_template('register.html')
+
+@app.route("/redirectstudentpage", methods=['GET', 'POST'])
+def RedirectStudentPage():
+    return render_template('student.html')
+
 
 
 @app.route("/fetchdata", methods=['GET', 'POST'])
 def fetch_student_data():
-        # Define the SQL query to fetch data from the "assignment" table based on student_id
-        student_id = 123456  # Replace with the actual student_id you want to fetch
+    # Check if the user is logged in (session contains 'loggedin')
+    if 'loggedin' in session:
+        # Access the student_id from the session
+        student_id = session['student_id']
+        
+        # Define the SQL query to fetch data from the "assignment" table based on the student_id
         sql_query = """
             SELECT 
                 cohort, intern_period, status, remark, 
@@ -80,6 +92,8 @@ def fetch_student_data():
             return jsonify(student_dict)
         else:
             return "Student not found"
+    else:
+        return jsonify({"error": "Not logged in"})
 
 @app.route("/updatesupervisor", methods=['POST'])
 def UpdateSupervisor():
@@ -281,7 +295,7 @@ def login():
         # fetch query result as tuples
         cursor = db_conn.cursor()
         # query
-        cursor.execute('SELECT student_name, student_email, student_NRIC FROM assignment WHERE student_email = %s AND student_NRIC = %s', (email, ic_number))
+        cursor.execute('SELECT student_name, student_email, student_NRIC, student_id FROM assignment WHERE student_email = %s AND student_NRIC = %s', (email, ic_number))
         login_data = cursor.fetchone()
 
         # checks if a user with the provided email and password was found in the database.
@@ -290,12 +304,15 @@ def login():
             session['loggedin'] = True
             session['email'] = login_data[1]  # Access elements by index
             session['ic_number'] = login_data[2]  # Access elements by index
+            session['student_id'] = login_data[3]  # Store student ID in the session
             name = login_data[0]  # Access elements by index
-            message = 'Logged in successfully !'
-            return render_template('student.html', message=message)
+            message = 'Logged in successfully!'
+            return redirect(url_for('redirectstudent'))  # Redirect to the student home page
         else:
             message = 'Please enter correct email / ic number!'
+    
     return render_template('student.html', message=message)
+
 
   
 @app.route('/logout')
