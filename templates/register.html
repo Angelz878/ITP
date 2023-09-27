@@ -27,7 +27,7 @@
                   </select>
                   <br><br>
 
-				Programme: <select id="dropdown3" name="programme"> <option>Select One</option>
+				Programme: <select id="dropdown3" name="student_programme"> <option>Select One</option>
                     <option value="rds">RDS</option>
                     <option value="rst">RST</option>
                     <option value="rit">RSW</option>
@@ -36,14 +36,16 @@
 
 		  		Tutorial Group: <input style="height:25px;font-size:14pt;color:grey;" type="t_group" id="t_group" name="t_group" ><br><br>
 
-		  		Student ID: <input style="height:25px;font-size:14pt;color:grey;" type="s_id" id="s_id" name="s_id"><br><br>
+		  		Student ID: <input style="height:25px;font-size:14pt;color:grey;" type="s_id" id="student_id" name="student_id"><br><br>
 
-		  		Student Email: <input style="height:25px;font-size:14pt;color:grey;" type="s_email" id="s_email" name="s_email"><br><br>
+		  		Student Email: <input style="height:25px;font-size:14pt;color:grey;" type="s_email" id="student_email" name="s_email"><br><br>
 
 		  		CGPA: <input style="height:25px;font-size:14pt;color:grey;" type="cgpa" id="cgpa" name="cgpa"><br><br>
             
-          UC Supervisor: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor" id="supervisor" name="supervisor"><br><br>
+                UC Supervisor: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor" id="supervisor_name" name="supervisor"><br><br>
             
+                UC Supervisor Email: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor_email" id="supervisor_email" name="supervisor_email"><br><br>
+
             </div>
 
             <br>
@@ -52,15 +54,17 @@
             
                 <h3>Personal Information</h3>
 
-                Full Name: <input style="height:25px;font-size:14pt;color:grey;" type="full_name" id="full_name" name="full_name" ><br><br>
+                Full Name: <input style="height:25px;font-size:14pt;color:grey;" type="full_name" id="student_name" name="full_name" ><br><br>
 
-                NIRC: <input style="height:25px;font-size:14pt;color:grey;" type="ic" id="ic" name="ic" ><br><br>
+                NIRC: <input style="height:25px;font-size:14pt;color:grey;" type="ic" id="student_NRIC" name="ic" ><br><br>
             
-                Gender: <select id="dropdown4" name="gender"> <option>Select One</option>
+                Gender: <select id="dropdown4" name="student_gender"> <option>Select One</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </select>
                   <br><br>
+
+                Health Remark: <input style="height:25px;font-size:14pt;color:grey;" type="remark" id="remark" name="remark" ><br><br>
 
             </div>
 
@@ -74,7 +78,7 @@
 
                 Address: <input style="height:25px;font-size:14pt;color:grey;" type="address" id="address" name="address" ><br><br>
             
-                Phone Number: <input style="height:25px;font-size:14pt;color:grey;" type="p_number" id="p_number" name="p_number" ><br><br>
+                Phone Number: <input style="height:25px;font-size:14pt;color:grey;" type="p_number" id="mobile_number" name="p_number" ><br><br>
 
                 Parent Phone Number: <input style="height:25px;font-size:14pt;color:grey;" type="pa_number" id="pa_number" name="pa_number" ><br><br>
             
@@ -119,15 +123,17 @@
         function validateForm() {
             
             var t_group = document.getElementById("t_group").value;
-            var s_id = document.getElementById("s_id").value;
-            var s_email = document.getElementById("s_email").value;
+            var student_id = document.getElementById("student_id").value;
+            var student_email = document.getElementById("student_email").value;
             var cgpa = document.getElementById("cgpa").value;
-            var supervisor = document.getElementById("supervisor").value;
-            var full_name = document.getElementById("full_name").value;
-            var ic = document.getElementById("ic").value;
+            var supervisor_name = document.getElementById("supervisor_name").value;
+            var supervisor_email = document.getElementById("supervisor_email").value;
+            var student_name = document.getElementById("student_name").value;
+            var student_NRIC = document.getElementById("student_NRIC").value;
+            var remark = document.getElementById("remark").value;
             var p_email = document.getElementById("p_email").value;
             var address = document.getElementById("address").value;
-            var p_number = document.getElementById("p_number").value;
+            var mobile_number = document.getElementById("mobile_number").value;
             var pa_number = document.getElementById("pa_number").value;
             var p_knowledge = document.getElementById("p_knowledge").value;
             var d_knowledge = document.getElementById("d_knowledge").value;
@@ -140,12 +146,12 @@
                 return false; 
             }
 
-            if (s_id === "") {
+            if (student_id === "") {
                 alert("Student ID is required.");
                 return false; 
             }
 
-            if (s_email === "") {
+            if (student_email === "") {
                 alert("Student Email is required.");
                 return false; 
             }
@@ -155,18 +161,28 @@
                 return false; 
             }
 
-            if (supervisor === "") {
-                alert("Supervisor is required.");
+            if (supervisor_name === "") {
+                alert("Supervisor name is required.");
                 return false; 
             }
 
-            if (full_name === "") {
+            if (supervisor_email === "") {
+                alert("Supervisor email is required.");
+                return false; 
+            }
+
+            if (student_name === "") {
                 alert("Full Name is required.");
                 return false; 
             }
 
-            if (ic === "") {
+            if (student_NRIC === "") {
                 alert("IC Number is required.");
+                return false; 
+            }
+
+            if (remark === "") {
+                alert("Health Remark is required.");
                 return false; 
             }
 
@@ -180,7 +196,7 @@
                 return false; 
             }
 
-            if (p_number === "") {
+            if (mobile_number === "") {
                 alert("Phone Number is required.");
                 return false; 
             }

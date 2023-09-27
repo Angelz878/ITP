@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify  
 from pymysql import connections
 import os
 import boto3
@@ -26,15 +26,69 @@ def home():
     return render_template('student.html')
 
 
-# @app.route("/about", methods=['POST'])
-# def about():
-#     return render_template('www.intellipaat.com')
-
 
 @app.route("/fetchdata", methods=['GET', 'POST'])
-def ReadData():
-    student_id = request.form.get('studentId')
-    return render_template('student.html', student_id=student_id)
+def fetch_student_data():
+        # Define the SQL query to fetch data from the "assignment" table based on student_id
+        student_id = 123456  # Replace with the actual student_id you want to fetch
+        sql_query = """
+            SELECT 
+                cohort, intern_period, status, remark, 
+                student_name, student_id, student_NRIC, 
+                student_gender, student_programme, student_email, mobile_number, 
+                supervisor_name, supervisor_email
+            FROM assignment
+            WHERE student_id = %s
+        """
+
+        cursor = db_conn.cursor()
+        cursor.execute(sql_query, (student_id,))
+        student_data = cursor.fetchone()
+
+        if student_data:
+            # Convert the fetched data into a dictionary
+            student_dict = {
+                "cohort": student_data[0],
+                "intern_period": student_data[1],
+                "status": student_data[2],
+                "remark": student_data[3],
+                "student_name": student_data[4],
+                "student_id": student_data[5],
+                "student_NRIC": student_data[6],
+                "student_gender": student_data[7],
+                "student_programme": student_data[8],
+                "student_email": student_data[9],
+                "mobile_number": student_data[10],
+                "supervisor_name": student_data[11],
+                "supervisor_email": student_data[12],
+            }
+
+            return jsonify(student_dict)
+        else:
+            return "Student not found"
+
+@app.route("/updatesupervisor", methods=['POST'])
+def UpdateSupervisor():
+    
+    student_id = 123456
+    supervisor_name = request.form['ucSupervisor']
+    supervisor_email = request.form['ucSupervisorEmail']
+
+    update_sql = "UPDATE assignment SET supervisor_name = %s, supervisor_email = %s WHERE student_id = %s"
+    cursor = db_conn.cursor()
+
+    try:
+        cursor.execute(update_sql, (supervisor_name, supervisor_email, student_id))
+        db_conn.commit()
+        
+    except Exception as e:
+        db_conn.rollback()  # Rollback changes if an error occurs
+        print(f"Error: {e}")
+        
+    finally:
+        cursor.close()
+
+    return render_template('student.html')
 
 
 @app.route("/addcompany", methods=['POST'])
@@ -52,12 +106,13 @@ def AddCompany():
     insert_sql = "INSERT INTO assignment (company_name, company_address, monthly_allowance, company_supervisor_name, company_supervisor_email) VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
-    if company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "" and hired_evidence.filename == "" :
+    if company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "" and hired_evidence.filename == "":
         return "Please select a file"
 
     try:
 
-        cursor.execute(insert_sql, (company_name, company_address, monthly_allowance, company_supervisor_name, company_supervisor_email))
+        cursor.execute(insert_sql, (company_name, company_address,
+                       monthly_allowance, company_supervisor_name, company_supervisor_email))
         db_conn.commit()
         # Uplaod image file in S3 #
         company_acceptance_form_in_s3 = "com-acceptance-form" + \
@@ -67,7 +122,7 @@ def AddCompany():
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
             s3.Bucket(custombucket).put_object(
-                Key=company_acceptance_form_in_s3, Body=company_acceptance_form)
+                Key=company_acceptance_form_in_s3, Body=company_acceptance_form, ContentType='application/pdf')
             bucket_location = boto3.client(
                 's3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
@@ -90,7 +145,7 @@ def AddCompany():
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
-                Key=parent_acknowledge_form_in_s3, Body=parent_acknowledge_form)
+                Key=parent_acknowledge_form_in_s3, Body=parent_acknowledge_form, ContentType='application/pdf')
             bucket_location = boto3.client(
                 's3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
@@ -113,7 +168,7 @@ def AddCompany():
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
-                Key=letter_of_indemnity_in_s3, Body=letter_of_indemnity)
+                Key=letter_of_indemnity_in_s3, Body=letter_of_indemnity, ContentType='application/pdf')
             bucket_location = boto3.client(
                 's3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
@@ -136,7 +191,7 @@ def AddCompany():
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
-                Key=hired_evidence_in_s3, Body=hired_evidence)
+                Key=hired_evidence_in_s3, Body=hired_evidence, ContentType='application/pdf')
             bucket_location = boto3.client(
                 's3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
