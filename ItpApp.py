@@ -49,7 +49,7 @@ def RedirectStudentPage():
 
 
 
-@app.route("/fetchdata", methods=['GET', 'POST'])
+@app.route("/fetchdatastudent", methods=['GET', 'POST'])
 def fetch_student_data():
     # Check if the user is logged in (session contains 'loggedin')
     if 'loggedin' in session:
@@ -97,8 +97,8 @@ def fetch_student_data():
 
 @app.route("/updatesupervisor", methods=['POST'])
 def UpdateSupervisor():
-    
     student_id = session['student_id']
+    
     supervisor_name = request.form['ucSupervisor']
     supervisor_email = request.form['ucSupervisorEmail']
 
@@ -133,7 +133,7 @@ def UpdateCompany():
     letter_of_indemnity = request.files['attchLetterOfIndemnity']
     hired_evidence = request.files['attchHiredEvidence']
 
-    update_sql = "UPDATE assignment SET company_name = %s, company_address = %s, monthly_allowance = %s, company_supervisor_name = %s, company_supervisor_email = %s"
+    update_sql = "UPDATE assignment SET company_name = %s, company_address = %s, monthly_allowance = %s, company_supervisor_name = %s, company_supervisor_email = %s WHERE student_id = %s"
     cursor = db_conn.cursor()
 
     if company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "" and hired_evidence.filename == "":
