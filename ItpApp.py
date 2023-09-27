@@ -121,6 +121,8 @@ def UpdateSupervisor():
 
 @app.route("/addcompany", methods=['POST'])
 def AddCompany():
+    student_id = session['student_id']
+    
     company_name = request.form['companyName']
     company_address = request.form['companyAddress']
     monthly_allowance = request.form['allowance']
@@ -144,7 +146,7 @@ def AddCompany():
         db_conn.commit()
         # Uplaod image file in S3 #
         company_acceptance_form_in_s3 = "com-acceptance-form" + \
-            str(company_name) + "_image_file"
+            str(student_id) + "_image_file"
         s3 = boto3.resource('s3')
 
         try:
@@ -169,7 +171,7 @@ def AddCompany():
             return str(e)
 
         parent_acknowledge_form_in_s3 = "parent-ack-form" + \
-            str(company_name) + "_image_file"
+            str(student_id) + "_image_file"
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
@@ -192,7 +194,7 @@ def AddCompany():
             return str(e)
 
         letter_of_indemnity_in_s3 = "letter-of-indemnity-form" + \
-            str(company_name) + "_image_file"
+            str(student_id) + "_image_file"
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
@@ -215,7 +217,7 @@ def AddCompany():
             return str(e)
 
         hired_evidence_in_s3 = "hired-evidence-form" + \
-            str(company_name) + "_image_file"
+            str(student_id) + "_image_file"
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
@@ -263,15 +265,16 @@ def AddCandidate():
     remark = request.form['remark']    
     student_address = request.form['student_address']
     mobile_number = request.form['mobile_number']
+    status = "pending"
 
     # SQL insert statement for inserting all data into a single table
-    insert_sql = "INSERT INTO assignment (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, student_address, mobile_number) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO assignment (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, student_address, mobile_number, status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
     cursor = db_conn.cursor()
 
     try:
         # Execute SQL insert statement
-        cursor.execute(insert_sql, (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark,student_address, mobile_number))
+        cursor.execute(insert_sql, (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark,student_address, mobile_number, status))
 
         db_conn.commit()
 
