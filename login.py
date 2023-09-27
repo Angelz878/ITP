@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_session import Session
-from pymysql import connections, cursors
+from pymysql import connections
+from pymysql.cursors import DictCursor
 from config import *
 import re
   
@@ -46,7 +47,7 @@ def login():
         ic_number = request.form.get("ic_number")
 
         # fetch query result as dictionaries
-        cursor = db_conn.cursor(connections.cursors.DictCursor)
+        cursor = db_conn.cursor(DictCursor)
         # query
         cursor.execute('SELECT student_email, student_NRIC FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
         login_data = cursor.fetchone()
