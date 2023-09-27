@@ -1,113 +1,151 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Register - TAR UC ITP</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content.css') }}">
 </head>
 <center>
-	<font color="black" size="4" style="font-family: avenir">
-		<h1>Student Register</h1>
-    </center>
+    <font color="black" size="4" style="font-family: avenir">
+        <h1>Student Register</h1>
+</center>
 
-		<body>
-			<form id="signupForm" action="/addcand" autocomplete="on" method = "POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+<body>
 
-            <div style="border:black; border-width:2px; border-style:solid;">
-                
-                <h3>Academic Level</h3>
-
-		  		Level: <select id="level" name="level"> <option>Select Level</option>
-                    <option value="diploma">Diploma</option>
-                    <option value="Bachelor">Bachelor</option>
-                  </select>
-                  <br><br>
-                
-                Cohort: <select id="cohort" name="cohort"> <option>Select One</option>
-                    <option value="intake_1">2020 July Intake</option>
-                    <option value="intake_2">2021 July Intake</option>
-                    <option value="intake_3">2022 July Intake</option>
-                  </select>
-                  <br><br>
-
-				Programme: <select id="student_programme" name="student_programme"> <option>Select One</option>
-                    <option value="rds">RDS</option>
-                    <option value="rst">RST</option>
-                    <option value="rit">RSW</option>
-                  </select>
-                  <br><br>
-
-                Intern Period: <input style="height:25px;font-size:14pt;color:grey;" type="intern_period" id="intern_period" name="intern_period" ><br><br>
-
-		  		Tutorial Group: <input style="height:25px;font-size:14pt;color:grey;" type="student_group" id="student_group" name="student_group" ><br><br>
-
-		  		Student ID: <input style="height:25px;font-size:14pt;color:grey;" type="student_id" id="student_id" name="student_id"><br><br>
-
-		  		Student Email: <input style="height:25px;font-size:14pt;color:grey;" type="student_email" id="student_email" name="student_email"><br><br>
-
-		  		CGPA: <input style="height:25px;font-size:14pt;color:grey;" type="cgpa" id="cgpa" name="cgpa"><br><br>
-            
-                UC Supervisor: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor_name" id="supervisor_name" name="supervisor_name"><br><br>
-            
-                UC Supervisor Email: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor_email" id="supervisor_email" name="supervisor_email"><br><br>
-
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-links">
+                    <a href="/redirecthome" class="navbar-link">Home</a>
+                    <div class="spacer"></div> <!-- Add a spacer between the links -->
+                    <div id="itenMenu" class="navbar-collapse collapse navbar-right"
+                        style="display:inline-block; vertical-align: top;">
+                        <a href="/redirectlogin" class="navbar-link">Student Login</a>
+                    </div>
+                </div>
             </div>
+        </nav>
+    </header>
 
-            <br>
-            
-            <div style="border:black; border-width:2px; border-style:solid;">
-            
-                <h3>Personal Information</h3>
+    <form id="signupForm" action="/addcand" autocomplete="on" method="POST" enctype="multipart/form-data"
+        onsubmit="return validateForm()">
 
-                Full Name: <input style="height:25px;font-size:14pt;color:grey;" type="student_name" id="student_name" name="student_name" ><br><br>
+        <div style="border:black; border-width:2px; border-style:solid;">
 
-                NRIC: <input style="height:25px;font-size:14pt;color:grey;" type="student_NRIC" id="student_NRIC" name="student_NRIC" ><br><br>
-            
-                Gender: <select id="student_gender" name="student_gender"> <option>Select One</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
-                  <br><br>
+            <h3>Academic Level</h3>
 
-                Health Remark: <input style="height:25px;font-size:14pt;color:grey;" type="remark" id="remark" name="remark" ><br><br>
+            Level: <select id="level" name="level">
+                <option>Select Level</option>
+                <option value="diploma">Diploma</option>
+                <option value="Bachelor">Bachelor</option>
+            </select>
+            <br><br>
 
-            </div>
+            Cohort: <select id="cohort" name="cohort">
+                <option>Select One</option>
+                <option value="intake_1">2020 July Intake</option>
+                <option value="intake_2">2021 July Intake</option>
+                <option value="intake_3">2022 July Intake</option>
+            </select>
+            <br><br>
 
-            <br>
+            Programme: <select id="student_programme" name="student_programme">
+                <option>Select One</option>
+                <option value="rds">RDS</option>
+                <option value="rst">RST</option>
+                <option value="rit">RSW</option>
+            </select>
+            <br><br>
 
-            <div style="border:black; border-width:2px; border-style:solid;">
-            
-                <h3>Student Contact Information</h3>
+            Intern Period: <input style="height:25px;font-size:14pt;color:grey;" type="intern_period" id="intern_period"
+                name="intern_period"><br><br>
 
-                Address: <input style="height:25px;font-size:14pt;color:grey;" type="student_address" id="student_address" name="student_address" ><br><br>
-            
-                Phone Number: <input style="height:25px;font-size:14pt;color:grey;" type="mobile_number" id="mobile_number" name="mobile_number" ><br><br>
-            
-            </div>
+            Tutorial Group: <input style="height:25px;font-size:14pt;color:grey;" type="student_group"
+                id="student_group" name="student_group"><br><br>
 
-            <br>
+            Student ID: <input style="height:25px;font-size:14pt;color:grey;" type="student_id" id="student_id"
+                name="student_id"><br><br>
 
-            <div style="border:black; border-width:2px; border-style:solid;">
-        
-                <center>
-                
+            Student Email: <input style="height:25px;font-size:14pt;color:grey;" type="student_email" id="student_email"
+                name="student_email"><br><br>
+
+            CGPA: <input style="height:25px;font-size:14pt;color:grey;" type="cgpa" id="cgpa" name="cgpa"><br><br>
+
+            UC Supervisor: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor_name"
+                id="supervisor_name" name="supervisor_name"><br><br>
+
+            UC Supervisor Email: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor_email"
+                id="supervisor_email" name="supervisor_email"><br><br>
+
+        </div>
+
+        <br>
+
+        <div style="border:black; border-width:2px; border-style:solid;">
+
+            <h3>Personal Information</h3>
+
+            Full Name: <input style="height:25px;font-size:14pt;color:grey;" type="student_name" id="student_name"
+                name="student_name"><br><br>
+
+            NRIC: <input style="height:25px;font-size:14pt;color:grey;" type="student_NRIC" id="student_NRIC"
+                name="student_NRIC"><br><br>
+
+            Gender: <select id="student_gender" name="student_gender">
+                <option>Select One</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <br><br>
+
+            Health Remark: <input style="height:25px;font-size:14pt;color:grey;" type="remark" id="remark"
+                name="remark"><br><br>
+
+        </div>
+
+        <br>
+
+        <div style="border:black; border-width:2px; border-style:solid;">
+
+            <h3>Student Contact Information</h3>
+
+            Address: <input style="height:25px;font-size:14pt;color:grey;" type="student_address" id="student_address"
+                name="student_address"><br><br>
+
+            Phone Number: <input style="height:25px;font-size:14pt;color:grey;" type="mobile_number" id="mobile_number"
+                name="mobile_number"><br><br>
+
+        </div>
+
+        <br>
+
+        <div style="border:black; border-width:2px; border-style:solid;">
+
+            <center>
+
                 <h3>Declaration</h3>
 
-                <p style="color:Red">I UNDERSTAND THAT I MUST COMPLETE THE FULL DURATION OF THE INDUSTRIAL TRAINING PROGRAMME PERIOD SATISFACTORILY IN ORDER TO PASS THE BAIT305C / AMIT3205 COURSE. I AGREE TO ABIDE BY THE RULES AND REGULATIONS OF THE COMPANY CONCERNED AND I WILL ALWAYS UPHOLD THE GOOD NAME OF THE UNIVERSITY COLLEGE AT ALL TIMES DURING THE WHOLE DURATION OF THE INDUSTRIAL TRAINING PROGRAMME.</p>
-                
-                <button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Confirm</button>
-                
-                <button type="button" onclick="cancelForm()" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">Cancel</button><br><br>
+                <p style="color:Red">I UNDERSTAND THAT I MUST COMPLETE THE FULL DURATION OF THE INDUSTRIAL TRAINING
+                    PROGRAMME PERIOD SATISFACTORILY IN ORDER TO PASS THE BAIT305C / AMIT3205 COURSE. I AGREE TO ABIDE BY
+                    THE RULES AND REGULATIONS OF THE COMPANY CONCERNED AND I WILL ALWAYS UPHOLD THE GOOD NAME OF THE
+                    UNIVERSITY COLLEGE AT ALL TIMES DURING THE WHOLE DURATION OF THE INDUSTRIAL TRAINING PROGRAMME.</p>
 
-                </center>
+                <button type="submit"
+                    style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Confirm</button>
 
-            </div>
-    
-			</form>
+                <button type="button" onclick="cancelForm()"
+                    style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">Cancel</button><br><br>
 
-      <script>
-        
+            </center>
+
+        </div>
+
+    </form>
+
+    <script>
+
         function validateForm() {
-            
+
             var intern_period = document.getElementById("intern_period").value;
             var student_group = document.getElementById("student_group").value;
             var student_id = document.getElementById("student_id").value;
@@ -118,85 +156,87 @@
             var student_name = document.getElementById("student_name").value;
             var student_NRIC = document.getElementById("student_NRIC").value;
             var remark = document.getElementById("remark").value;
-            
+
             var student_address = document.getElementById("student_address").value;
             var mobile_number = document.getElementById("mobile_number").value;
-            
+
             // Check if the input fields are empty
             if (intern_period === "") {
                 alert("Intern Period is required.");
-                return false; 
+                return false;
             }
-            
+
             if (student_group === "") {
                 alert("Tutorial Group is required.");
-                return false; 
+                return false;
             }
 
             if (student_id === "") {
                 alert("Student ID is required.");
-                return false; 
+                return false;
             }
 
             if (student_email === "") {
                 alert("Student Email is required.");
-                return false; 
+                return false;
             }
 
             if (cgpa === "") {
                 alert("CGPA is required.");
-                return false; 
+                return false;
             }
 
             if (supervisor_name === "") {
                 alert("Supervisor name is required.");
-                return false; 
+                return false;
             }
 
             if (supervisor_email === "") {
                 alert("Supervisor email is required.");
-                return false; 
+                return false;
             }
 
             if (student_name === "") {
                 alert("Full Name is required.");
-                return false; 
+                return false;
             }
 
             if (student_NRIC === "") {
                 alert("IC Number is required.");
-                return false; 
+                return false;
             }
 
             if (remark === "") {
                 alert("Health Remark is required.");
-                return false; 
+                return false;
             }
 
-            
+
 
             if (student_address === "") {
                 alert("Address is required.");
-                return false; 
+                return false;
             }
 
             if (mobile_number === "") {
                 alert("Phone Number is required.");
-                return false; 
+                return false;
             }
 
-            return true; 
+            return true;
         }
 
         function cancelForm() {
-                window.location.href = "/redirecthome"; // Redirect to the home page
-            }
+            window.location.href = "/redirecthome"; // Redirect to the home page
+        }
 
     </script>
 
-		</body>
+    <footer>
+        <p>&copy; 2023 - TAR UC ITP</p>
+    </footer>
+</body>
 
-	</font>
+</font>
 
 </html>
-
