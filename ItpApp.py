@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, jsonify  
+from flask import Flask, render_template, request, jsonify, session  
+from flask_session import Session
 from pymysql import connections
 import os
 import boto3
@@ -259,8 +260,43 @@ def AddCandidate():
         cursor.close()
 
     print("all modifications done...")
-    return render_template('register.html')
+    return render_template('login.html')
 
+@app.route('/login', methods =['GET', 'POST'])
+def login():
+    # delcare empty message variable
+    message = ''
+
+    # if form is submited
+    if request.method == 'POST':
+        # retrieve email and ic_number from the form data
+        email = request.form.get("email")
+        ic_number = request.form.get("ic_number")
+
+        # fetch query result as dictionaries
+        cursor = db_conn.cursor(DictCursor)
+        # query
+        cursor.execute('SELECT student_name, student_email, student_NRIC FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
+        login_data = cursor.fetchone()
+
+        # checks if a user with the provided email and password was found in the database.
+        if login_data:
+            # user found in database
+            session['loggedin'] = True
+            session['email'] = login_data['student_email']
+            session['ic_number'] = login_data['student_NRIC']
+            name = login_data['student_name']
+            message = 'Logged in successfully !'
+            return render_template('index.html', message = message)
+        else:
+            message = 'Please enter correct email / ic number!'
+    return render_template('student.html', message = message)
+  
+@app.route('/logout')
+def logout():
+    session["email"] = None
+    session['loggedin'] = False
+    return render_template('login.html')  # Redirect to the login page after logout
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
