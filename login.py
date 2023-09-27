@@ -32,7 +32,7 @@ def home():
     if not session.get("email"):
         # if not there in the session then redirect to the login page
         return redirect("/login")
-    return render_template('index.html')
+    return render_template('index.html' name = name)
 
 # login page
 @app.route('/login', methods =['GET', 'POST'])
@@ -49,7 +49,7 @@ def login():
         # fetch query result as dictionaries
         cursor = db_conn.cursor(DictCursor)
         # query
-        cursor.execute('SELECT student_email, student_NRIC FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
+        cursor.execute('SELECT student_name, student_email, student_NRIC FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
         login_data = cursor.fetchone()
 
         # checks if a user with the provided email and password was found in the database.
@@ -58,8 +58,9 @@ def login():
             session['loggedin'] = True
             session['email'] = login_data['student_email']
             session['ic_number'] = login_data['student_NRIC']
+            name = login_data['student_name']
             message = 'Logged in successfully !'
-            return render_template('index.html{{ - session.name }}', message = message)
+            return render_template('index.html', message = message)
         else:
             message = 'Please enter correct email / ic number!'
     return render_template('login.html', message = message)
