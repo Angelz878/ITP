@@ -58,37 +58,14 @@ def login():
             message = 'Logged in successfully !'
             return render_template('user.html', message = message)
         else:
-            mesage = 'Please enter correct email / ic number!'
+            message = 'Please enter correct email / ic number!'
     return render_template('login.html', message = message)
   
 @app.route('/logout')
 def logout():
     session["email"] = None
+    session['loggedin'] = False
     return redirect(url_for('login'))
-  
-# @app.route('/register', methods =['GET', 'POST'])
-# def register():
-#     mesage = ''
-#     if request.method == 'POST' and 'name' in request.form and 'password' in request.form and 'email' in request.form :
-#         userName = request.form['name']
-#         password = request.form['password']
-#         email = request.form['email']
-#         cursor = db_conn.cursor(connections.cursors.DictCursor)
-#         cursor.execute('SELECT * FROM user WHERE email = % s', (email, ))
-#         account = cursor.fetchone()
-#         if account:
-#             mesage = 'Account already exists !'
-#         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-#             mesage = 'Invalid email address !'
-#         elif not userName or not password or not email:
-#             mesage = 'Please fill out the form !'
-#         else:
-#             cursor.execute('INSERT INTO user VALUES (NULL, % s, % s, % s)', (userName, email, password, ))
-#             db_conn.commit()
-#             mesage = 'You have successfully registered !'
-#     elif request.method == 'POST':
-#         mesage = 'Please fill out the form !'
-#     return render_template('register.html', mesage = mesage)
     
 if __name__ == "__main__":
     app.run()
