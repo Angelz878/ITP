@@ -313,7 +313,7 @@ def login():
         else:
             message = 'Please enter correct email / IC Number combination!'
     
-    return render_template('home.html', message=message)
+    return render_template('login.html', message=message)
 
 
 
