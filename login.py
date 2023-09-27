@@ -56,8 +56,8 @@ def login():
         if login_data:
             # user found in database
             session['loggedin'] = True
-            session['email'] = login_data['email']
-            session['ic_number'] = login_data['ic_number']
+            session['email'] = login_data['student_email']
+            session['ic_number'] = login_data['student_NRIC']
             message = 'Logged in successfully !'
             return render_template('/', message = message)
         else:
