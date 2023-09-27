@@ -97,6 +97,47 @@ def fetch_student_data():
             return "Student not found"
     else:
         return jsonify({"error": "Not logged in"})
+    
+@app.route("/fetchdatacompany", methods=['GET', 'POST'])
+def fetch_company_data():
+    # Check if the user is logged in (session contains 'loggedin')
+    if 'loggedin' in session:
+        # Access the student_id from the session
+        student_id = session['student_id']
+
+        # Define the SQL query to fetch data from the "assignment" table based on the student_id
+        sql_query = """
+            SELECT 
+                company_name, company_address, monthly_allowance, company_supervisor_name, 
+                company_supervisor_email, com_acceptance_form_url, parent_ack_form_url, 
+                letter_of_indemnity_url, hired_evidence_url
+            FROM assignment
+            WHERE student_id = %s
+        """
+
+        cursor = db_conn.cursor()
+        cursor.execute(sql_query, (student_id,))
+        company_data = cursor.fetchone()
+
+        if company_data:
+            # Convert the fetched data into a dictionary
+            company_dict = {
+                "company_name": company_data[0],
+                "company_address": company_data[1],
+                "monthly_allowance": company_data[2],
+                "company_supervisor_name": company_data[3],
+                "company_supervisor_email": company_data[4],
+                "com_acceptance_form_url": company_data[5],
+                "parent_ack_form_url": company_data[6],
+                "letter_of_indemnity_url": company_data[7],
+                "hired_evidence_url": company_data[8],
+            }
+
+            return jsonify(company_dict)
+        else:
+            return "Company data not found"
+    else:
+        return jsonify({"error": "Not logged in"})
 
 
 @app.route("/updatesupervisor", methods=['POST'])

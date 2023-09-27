@@ -35,6 +35,29 @@
 
         // Call the fetchStudentData function when the page loads
         window.onload = fetchStudentData;
+
+        // Function to fetch student data when the page loads
+        function fetchCompanyData() {
+            // Make an AJAX request to the /fetchdata route
+            fetch('/fetchdatacompany')
+                .then(response => response.json())
+                .then(data => {
+                    // Update the page content with the fetched data
+                    document.getElementById('CompanyName').innerText = data.company_name;
+                    document.getElementById('CompanyAddress').innerText = data.company_address;
+                    document.getElementById('MonthlyAllowance').innerText = data.monthly_allowance;
+                    document.getElementById('CompanySupervisorName').innerText = data.company_supervisor_name;
+                    document.getElementById('CompanySupervisorEmail').innerText = data.company_supervisor_email;
+                    document.getElementById('ComAcceptanceFormUrl').innerText = data.com_acceptance_form_url;
+                    document.getElementById('ParentAckFormUrl').innerText = data.parent_ack_form_url;
+                    document.getElementById('LetterOfIndemnityUrl').innerText = data.letter_of_indemnity_url;
+                    document.getElementById('HiredEvidenceUrl').innerText = data.hired_evidence_url;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Call the fetchStudentData function when the page loads
+        window.onload = fetchCompanyData;
     </script>
 
 
@@ -181,27 +204,29 @@
                             <div class="col-md-10">
                                 <div class="col-md-10">
                                     <input class="form-control text-box single-line" id="ucSupervisor"
-                                        name="ucSupervisor" type="text" value=""/>
+                                        name="ucSupervisor" type="text" value="" />
                                     <span id="ucSupervisor"></span>
                                     <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisor"
                                         data-valmsg-replace="true"></span>
                                 </div>
                             </div>
                         </div>
-        
+
                         <div class="form-group">
                             <label class="control-label col-md-2" for="ucSupervisorEmail">UC Supervisor Email</label>
                             <div class="col-md-10">
                                 <div class="col-md-10">
                                     <input class="form-control text-box single-line" id="ucSupervisorEmail"
-                                        name="ucSupervisorEmail" placeholder="e.g: xxxxx@tarc.edu.my" type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" title="Enter a valid email address">
+                                        name="ucSupervisorEmail" placeholder="e.g: xxxxx@tarc.edu.my" type="email"
+                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                                        title="Enter a valid email address">
                                     <span id="ucSupervisorEmail"></span>
                                     <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisorEmail"
                                         data-valmsg-replace="true"></span>
                                 </div>
                             </div>
                         </div>
-        
+
                         <div class="form-group">
                             <div class="col-md-2"></div>
                             <div class="col-md-10">
@@ -214,7 +239,7 @@
                 </div>
             </div>
         </form>
-        
+
 
 
         <div class="panel-group">
@@ -231,6 +256,7 @@
                                     <div style="display:inline-block">
                                         <input class="form-control long-textbox text-box single-line" id="companyName"
                                             name="companyName" type="text">
+                                        <span id="CompanyName"></span>
                                     </div>
                                 </div>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="companyName"
@@ -244,6 +270,7 @@
                             <div class="col-md-10">
                                 <textarea class="form-control" cols="20" id="companyAddress" name="companyAddress"
                                     rows="2"></textarea>
+                                <span id="CompanyAddress"></span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="companyAddress"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -257,6 +284,7 @@
                                     data-val-number="The field Monthly Allowance must be a number."
                                     data-val-required="The Monthly Allowance field is required." id="allowance"
                                     name="allowance" type="text" />
+                                <span id="MonthlyAllowance"></span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="allowance"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -268,6 +296,7 @@
                             <div class="col-md-10">
                                 <input class="form-control text-box single-line" id="companySupervisor"
                                     name="companySupervisor" type="text" />
+                                <span id="CompanySupervisorName"></span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="companySupervisor"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -278,7 +307,10 @@
                                 Email</label>
                             <div class="col-md-10">
                                 <input class="form-control text-box single-line" id="companySupervisorEmail"
-                                    name="companySupervisorEmail" type="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" title="Enter a valid email address"/>
+                                    name="companySupervisorEmail" type="email" required
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                                    title="Enter a valid email address" />
+                                <span id="CompanySupervisorEmail"></span>
                                 <span class="field-validation-valid text-danger"
                                     data-valmsg-for="companySupervisorEmail" data-valmsg-replace="true"></span>
                             </div>
@@ -295,6 +327,8 @@
                                 <span class="field-validation-valid text-danger"
                                     data-valmsg-for="attchCompanyAcceptance" data-valmsg-replace="true"></span>
                             </div>
+
+                            <div><span id="ComAcceptanceFormUrl"></span></div>
                         </div>
 
 
@@ -307,6 +341,8 @@
                                 <span class="field-validation-valid text-danger" data-valmsg-for="attchParentAck"
                                     data-valmsg-replace="true"></span>
                             </div>
+
+                            <div><span id="ParentAckFormUrl"></span></div>
                         </div>
 
 
@@ -319,6 +355,8 @@
                                 <span class="field-validation-valid text-danger"
                                     data-valmsg-for="attchLetterOfIndemnity" data-valmsg-replace="true"></span>
                             </div>
+
+                            <div><span id="LetterOfIndemnityUrl"></span></div>
                         </div>
 
                         <div class="form-group">
@@ -329,6 +367,8 @@
                                 <span class="field-validation-valid text-danger" data-valmsg-for="attchHiredEvidence"
                                     data-valmsg-replace="true"></span>
                             </div>
+
+                            <div><span id="HiredEvidenceUrl"></span></div>
                         </div>
 
                         <div class="form-group ">
