@@ -292,7 +292,7 @@ def login():
             session['ic_number'] = login_data[2]  # Access elements by index
             name = login_data[0]  # Access elements by index
             message = 'Logged in successfully !'
-            return render_template('index.html', message=message)
+            return render_template('student.html', message=message)
         else:
             message = 'Please enter correct email / ic number!'
     return render_template('student.html', message=message)
