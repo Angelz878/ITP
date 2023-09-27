@@ -33,9 +33,6 @@
                 .catch(error => console.error('Error:', error));
         }
 
-        // Call the fetchStudentData function when the page loads
-        window.onload = fetchStudentData;
-
         // Function to fetch student data when the page loads
         function fetchCompanyData() {
             // Make an AJAX request to the /fetchdata route
@@ -56,8 +53,11 @@
                 .catch(error => console.error('Error:', error));
         }
 
-        // Call the fetchStudentData function when the page loads
-        window.onload = fetchCompanyData;
+
+        window.onload = function () {
+            fetchStudentData();
+            fetchCompanyData();
+        };
     </script>
 
 
