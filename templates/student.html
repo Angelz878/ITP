@@ -194,7 +194,7 @@
                             <div class="col-md-10">
                                 <div class="col-md-10">
                                     <input class="form-control text-box single-line" id="ucSupervisorEmail"
-                                        name="ucSupervisorEmail" placeholder="e.g: xxxxx@tarc.edu.my" type="email" value="">
+                                        name="ucSupervisorEmail" placeholder="e.g: xxxxx@tarc.edu.my" type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" title="Enter a valid email address">
                                     <span id="ucSupervisorEmail"></span>
                                     <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisorEmail"
                                         data-valmsg-replace="true"></span>
@@ -278,7 +278,7 @@
                                 Email</label>
                             <div class="col-md-10">
                                 <input class="form-control text-box single-line" id="companySupervisorEmail"
-                                    name="companySupervisorEmail" type="email" />
+                                    name="companySupervisorEmail" type="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" title="Enter a valid email address"/>
                                 <span class="field-validation-valid text-danger"
                                     data-valmsg-for="companySupervisorEmail" data-valmsg-replace="true"></span>
                             </div>

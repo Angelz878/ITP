@@ -23,7 +23,7 @@ table = 'assignment'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('register.html')
+    return render_template('index.html')
 
 
 

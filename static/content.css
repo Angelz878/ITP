@@ -102,6 +102,11 @@ input[type="submit"] {
     border-radius: 4px;
 }
 
+/* Style the custom button width */
+.custom-btn {
+    width: 150px; /* You can adjust the width to your desired value */
+}
+
 .btn-default {
     background-color: white;
     color: #333;
@@ -111,11 +116,25 @@ input[type="submit"] {
 .btn-success {
     background-color: #4CAF50;
     color: #fff;
-    max-width: none; /* Remove the maximum width for this button */
+
 }
+
+.custom-btn {
+    max-width: 100px; /* Set a maximum width for the buttons */
+    padding: 4px 8px; /* Even smaller buttons */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px; /* Slightly smaller font size */
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 4px; 
+}
+
 
 /* Style the "Save And Submit" button in the company detail panel */
 .form-group:last-child .btn-success {
+    width: 150px; /* Set your desired width here */
     max-width: none; /* Remove the maximum width for this button */
 }
 
