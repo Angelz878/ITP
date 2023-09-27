@@ -40,11 +40,11 @@
                 .then(response => response.json())
                 .then(data => {
                     // Update the page content with the fetched data
-                    document.getElementById('CompanyName').innerText = data.company_name;
-                    document.getElementById('CompanyAddress').innerText = data.company_address;
-                    document.getElementById('Allowance').innerText = data.monthly_allowance;
-                    document.getElementById('CompanySupervisor').innerText = data.company_supervisor_name;
-                    document.getElementById('CompanySupervisorEmail').innerText = data.company_supervisor_email;
+                    document.getElementById('companyName').innerText = data.company_name;
+                    document.getElementById('companyAddress').innerText = data.company_address;
+                    document.getElementById('allowance').innerText = data.monthly_allowance;
+                    document.getElementById('companySupervisor').innerText = data.company_supervisor_name;
+                    document.getElementById('companySupervisorEmail').innerText = data.company_supervisor_email;
                     document.getElementById('ComAcceptanceFormUrl').innerText = data.com_acceptance_form_url;
                     document.getElementById('ParentAckFormUrl').innerText = data.parent_ack_form_url;
                     document.getElementById('LetterOfIndemnityUrl').innerText = data.letter_of_indemnity_url;
@@ -256,8 +256,9 @@
                                     <div style="display:inline-block">
                                         <input class="form-control long-textbox text-box single-line" id="companyName"
                                             name="companyName" type="text" value="" />
-                                        <span id="CompanyName"></span>
+                                        
                                     </div>
+                                    <span id="CompanyName"></span>
                                 </div>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="companyName"
                                     data-valmsg-replace="true"></span>
@@ -270,7 +271,7 @@
                             <div class="col-md-10">
                                 <textarea class="form-control" cols="20" id="companyAddress" name="companyAddress"
                                     rows="2" value=""></textarea>
-                                <span id="CompanyAddress"></span>
+                                <span id="companyAddress"></span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="companyAddress"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -284,7 +285,7 @@
                                     data-val-number="The field Monthly Allowance must be a number."
                                     data-val-required="The Monthly Allowance field is required." id="allowance"
                                     name="allowance" type="text" value="" />
-                                <span id="Allowance"></span>
+                                <span id="allowance"></span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="allowance"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -296,7 +297,7 @@
                             <div class="col-md-10">
                                 <input class="form-control text-box single-line" id="companySupervisor"
                                     name="companySupervisor" type="text" value="" />
-                                <span id="CompanySupervisor"></span>
+                                <span id="companySupervisor"></span>
                                 <span class="field-validation-valid text-danger" data-valmsg-for="companySupervisor"
                                     data-valmsg-replace="true"></span>
                             </div>
@@ -310,7 +311,7 @@
                                     name="companySupervisorEmail" type="email" required
                                     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
                                     title="Enter a valid email address" value="" />
-                                <span id="CompanySupervisorEmail"></span>
+                                <span id="companySupervisorEmail"></span>
                                 <span class="field-validation-valid text-danger"
                                     data-valmsg-for="companySupervisorEmail" data-valmsg-replace="true"></span>
                             </div>
