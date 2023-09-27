@@ -222,8 +222,8 @@ def AddCandidate():
     level = request.form.get('level')
     cohort = request.form.get('cohort')
     student_programme = request.form.get('student_programme')
-    intern_period = request.form.get('intern_period')
-    student_group = request.form.get('student_group')
+    intern_period = request.form('intern_period')
+    student_group = request.form('student_group')
     student_id = request.form['student_id']
     student_email = request.form['student_email']
     cgpa = request.form['cgpa']
@@ -231,7 +231,7 @@ def AddCandidate():
     supervisor_email = request.form['supervisor_email']
     student_name = request.form['student_name']
     student_NRIC = request.form['student_NRIC']
-    student_gender = request.form['student_gender']
+    student_gender = request.form.get['student_gender']
     remark = request.form['remark']
     p_email = request.form['p_email']
     student_address = request.form['student_address']
