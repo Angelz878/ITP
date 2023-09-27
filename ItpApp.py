@@ -26,11 +26,11 @@ def home():
     return render_template('index.html')
 
 @app.route("/redirecthome ", methods=['GET', 'POST'])
-def home():
+def RedirectHome():
     return render_template('index.html')
 
 @app.route("/redirectlogin", methods=['GET', 'POST'])
-def home():
+def RedirectLogin():
     return render_template('login.html')
 
 
