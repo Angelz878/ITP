@@ -25,7 +25,7 @@ output = {}
 table = 'assignment'
 
 # home page
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/index", methods=['GET', 'POST'])
 def home():
     # check if the users exist or not
     if not session.get("email"):
@@ -37,16 +37,13 @@ def home():
 @app.route('/login', methods =['GET', 'POST'])
 def login():
     # delcare empty message variable
-    mesage = ''
+    message = ''
 
     # if form is submited
-    if request.method == 'POST' and 'email':
-        # record the email
-        session['email'] = request.form.get("email")
-        # redirect to the main page
-        email = request.form['email']
-        ic_number = request.form['ic_number']
-
+    if request.method == 'POST':
+        # retrieve email and ic_number from the form data
+        email = request.form.get("email")
+        ic_number = request.form.get("ic_number")
 
         # fetch query result as dictionaries
         cursor = db_conn.cursor(connections.cursors.DictCursor)
@@ -54,9 +51,9 @@ def login():
         cursor.execute('SELECT student_email, student_NRIC FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
         login_data = cursor.fetchone()
 
-
         # checks if a user with the provided email and password was found in the database.
         if login_data:
+            # user found in database
             session['loggedin'] = True
             session['email'] = login_data['email']
             session['ic_number'] = login_data['ic_number']
@@ -64,7 +61,7 @@ def login():
             return render_template('login.html', message = message)
         else:
             message = 'Please enter correct email / ic number!'
-    return render_template('login.html')
+    return render_template('login.html', message = message)
   
 @app.route('/logout')
 def logout():
