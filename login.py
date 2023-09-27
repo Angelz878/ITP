@@ -25,7 +25,7 @@ output = {}
 table = 'assignment'
 
 # home page
-@app.route("/index", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def home():
     # check if the users exist or not
     if not session.get("email"):
