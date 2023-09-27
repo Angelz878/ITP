@@ -267,35 +267,36 @@ def AddCandidate():
     print("all modifications done...")
     return render_template('login.html')
 
-@app.route('/login', methods =['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    # delcare empty message variable
+    # declare an empty message variable
     message = ''
 
-    # if form is submited
+    # if the form is submitted
     if request.method == 'POST':
         # retrieve email and ic_number from the form data
         email = request.form.get("email")
         ic_number = request.form.get("ic_number")
 
-        # fetch query result as dictionaries
+        # fetch query result as tuples
         cursor = db_conn.cursor()
         # query
-        cursor.execute('SELECT student_name, student_email, student_NRIC FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
+        cursor.execute('SELECT student_name, student_email, student_NRIC FROM assignment WHERE student_email = %s AND student_NRIC = %s', (email, ic_number))
         login_data = cursor.fetchone()
 
         # checks if a user with the provided email and password was found in the database.
         if login_data:
-            # user found in database
+            # user found in the database
             session['loggedin'] = True
-            session['email'] = login_data['student_email']
-            session['ic_number'] = login_data['student_NRIC']
-            name = login_data['student_name']
+            session['email'] = login_data[1]  # Access elements by index
+            session['ic_number'] = login_data[2]  # Access elements by index
+            name = login_data[0]  # Access elements by index
             message = 'Logged in successfully !'
-            return render_template('index.html', message = message)
+            return render_template('index.html', message=message)
         else:
             message = 'Please enter correct email / ic number!'
-    return render_template('student.html', message = message)
+    return render_template('student.html', message=message)
+
   
 @app.route('/logout')
 def logout():
