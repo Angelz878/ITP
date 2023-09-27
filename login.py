@@ -46,18 +46,22 @@ def login():
         # redirect to the main page
         email = request.form['email']
         ic_number = request.form['ic_number']
+
+
         # fetch query result as dictionaries
         cursor = db_conn.cursor(connections.cursors.DictCursor)
         # query
-        cursor.execute('SELECT * FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
-        assignment = cursor.fetchone()
+        cursor.execute('SELECT student_email, student_NRIC FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
+        login_data = cursor.fetchone()
+
+
         # checks if a user with the provided email and password was found in the database.
-        if assignment:
+        if login_data:
             session['loggedin'] = True
-            session['email'] = assignment['email']
-            session['ic_number'] = assignment['ic_number']
+            session['email'] = login_data['email']
+            session['ic_number'] = login_data['ic_number']
             message = 'Logged in successfully !'
-            return render_template('user.html', message = message)
+            return render_template('login.html', message = message)
         else:
             message = 'Please enter correct email / ic number!'
     return render_template('login.html')
