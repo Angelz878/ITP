@@ -76,7 +76,6 @@
             
                 <h3>Student Contact Information</h3>
 
-                Personal Email: <input style="height:25px;font-size:14pt;color:grey;" type="p_email" id="p_email" name="p_email" ><br><br>
 
                 Address: <input style="height:25px;font-size:14pt;color:grey;" type="student_address" id="student_address" name="student_address" ><br><br>
             
@@ -118,7 +117,7 @@
             var student_name = document.getElementById("student_name").value;
             var student_NRIC = document.getElementById("student_NRIC").value;
             var remark = document.getElementById("remark").value;
-            var p_email = document.getElementById("p_email").value;
+            
             var student_address = document.getElementById("student_address").value;
             var mobile_number = document.getElementById("mobile_number").value;
             
@@ -173,10 +172,7 @@
                 return false; 
             }
 
-            if (p_email === "") {
-                alert("Personal Email is required.");
-                return false; 
-            }
+            
 
             if (student_address === "") {
                 alert("Address is required.");
