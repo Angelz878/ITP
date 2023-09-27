@@ -47,7 +47,7 @@ def login():
         email = request.form['email']
         ic_number = request.form['ic_number']
         # fetch query result as dictionaries
-        cursor = db_conn.cursor(connections.cursor.DictCursor)
+        cursor = db_conn.cursor(connections.cursors.DictCursor)
         # query
         cursor.execute('SELECT * FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
         assignment = cursor.fetchone()
