@@ -4,13 +4,13 @@ from pymysql import connections
 import os
 import boto3
 from config import *
+import secrets
 
 app = Flask(__name__)
 
 # Set a secret key for session management
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-
+secret_key = secrets.token_hex(24)
+app.config['SECRET_KEY'] = secret_key
 
 bucket = custombucket
 region = customregion
