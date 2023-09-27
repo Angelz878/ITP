@@ -5,6 +5,22 @@
     <title>Register - TAR UC ITP</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content.css') }}">
 </head>
+
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-links">
+                <a href="/redirecthome" class="navbar-link">Home</a>
+                <div class="spacer"></div> <!-- Add a spacer between the links -->
+                <div id="itenMenu" class="navbar-collapse collapse navbar-right"
+                    style="display:inline-block; vertical-align: top;">
+                    <a href="/redirectlogin" class="navbar-link">Student Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
 <center>
     <font color="black" size="4" style="font-family: avenir">
         <h1>Student Register</h1>
@@ -12,20 +28,7 @@
 
 <body>
 
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-links">
-                    <a href="/redirecthome" class="navbar-link">Home</a>
-                    <div class="spacer"></div> <!-- Add a spacer between the links -->
-                    <div id="itenMenu" class="navbar-collapse collapse navbar-right"
-                        style="display:inline-block; vertical-align: top;">
-                        <a href="/redirectlogin" class="navbar-link">Student Login</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+    
 
     <form id="signupForm" action="/addcand" autocomplete="on" method="POST" enctype="multipart/form-data"
         onsubmit="return validateForm()">

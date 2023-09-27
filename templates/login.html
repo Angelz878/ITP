@@ -8,22 +8,24 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body>
-
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-links">
-                    <a href="/redirecthome" class="navbar-link">Home</a>
-                    <div class="spacer"></div> <!-- Add a spacer between the links -->
-                    <div id="itenMenu" class="navbar-collapse collapse navbar-right"
-                        style="display:inline-block; vertical-align: top;">
-                        <a href="/redirectlogin" class="navbar-link">Student Login</a>
-                    </div>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-links">
+                <a href="/redirecthome" class="navbar-link">Home</a>
+                <div class="spacer"></div> <!-- Add a spacer between the links -->
+                <div id="itenMenu" class="navbar-collapse collapse navbar-right"
+                    style="display:inline-block; vertical-align: top;">
+                    <a href="/redirectlogin" class="navbar-link">Student Login</a>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
+
+<body>
+
+
 
     <div class="wrapper">
         <div class="form-box login">
@@ -43,10 +45,6 @@
                     <input type="password" name="ic_number" required>
                     <label for="">IC Number</label>
                 </div>
-                <!-- <div class="remember-forgot">
-                    <label for=""><input type="checkbox">Remember me</label>
-                    <a href="#">Forgot Password?</a>
-                </div> -->
                 <button type="submit" class="btn">Login</button>
                 <div class="login-register">
                     <p>Don't have an account?<a href="/redirectregister" class="register-link">Register</a></p>
@@ -55,9 +53,11 @@
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2023 - TAR UC ITP</p>
-    </footer>
+
 </body>
+
+<footer>
+    <p>&copy; 2023 - TAR UC ITP</p>
+</footer>
 
 </html>
