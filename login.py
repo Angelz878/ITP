@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_session import Session
 from pymysql import connections
+from config import *
 import re
   
 app = Flask(__name__)
