@@ -98,7 +98,7 @@ def fetch_student_data():
 @app.route("/updatesupervisor", methods=['POST'])
 def UpdateSupervisor():
     
-    student_id = 123456
+    student_id = session['student_id']
     supervisor_name = request.form['ucSupervisor']
     supervisor_email = request.form['ucSupervisorEmail']
 
@@ -317,8 +317,7 @@ def login():
   
 @app.route('/logout')
 def logout():
-    session["email"] = None
-    session['loggedin'] = False
+    session.clear()  # Clear all session data
     return render_template('login.html')  # Redirect to the login page after logout
 
 if __name__ == '__main__':
