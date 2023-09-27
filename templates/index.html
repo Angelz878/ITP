@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,15 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar-links">
-                <a href="/templates/index.html" class="navbar-link">Home</a>
+                <form action="/redirecthome" autocomplete="on" method="POST" enctype="multipart/form-data">
+                    <a href="#" class="navbar-link">Home</a>
+                </form>>
                 <div class="spacer"></div> <!-- Add a spacer between the links -->
-                <div id="itenMenu" class="navbar-collapse collapse navbar-right" style="display:inline-block; vertical-align: top;">
-                    <a href="/templates/login.html" class="navbar-link">Student Login</a>
+                <div id="itenMenu" class="navbar-collapse collapse navbar-right"
+                    style="display:inline-block; vertical-align: top;">
+                    <form action="/redirectlogin" autocomplete="on" method="POST" enctype="multipart/form-data"></form>
+                    <a href="#" class="navbar-link">Student Login</a>
+                    </form>
                 </div>
             </div>
         </div>
@@ -21,32 +27,34 @@
 </header>
 
 <div class="container body-content">
-    
 
 
-<div class="jumbotron row">
 
-<div class="col-md-4">
-    <img src="{{ url_for('static', filename='download.png') }}" />
-</div>
+    <div class="jumbotron row">
 
-<div class="col-md-8">
-    <h2>TAR UC ITP</h2>
-    <p class="lead">This System is used to generate Appointment Confirmation Letter for each individual student </p>
-</div>
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='download.png') }}" />
+        </div>
 
-</div>
+        <div class="col-md-8">
+            <h2>TAR UC ITP</h2>
+            <p class="lead">This System is used to generate Appointment Confirmation Letter for each individual student
+            </p>
+        </div>
 
-<div class="row">
-<div >
-    <h2>BAIT305C/AMIT3205 Industrial Training Programme</h2>
-    <p>
-        <b>Industrial Training</b> is a compulsory programme that open doors for internship essentials.
-        The programme focuses on student internship attachment, as evidence of work capabilities such as expanding professional network,
-        social values, work quality and ethics.
-    </p>
-</div>
-</div>
+    </div>
+
+    <div class="row">
+        <div>
+            <h2>BAIT305C/AMIT3205 Industrial Training Programme</h2>
+            <p>
+                <b>Industrial Training</b> is a compulsory programme that open doors for internship essentials.
+                The programme focuses on student internship attachment, as evidence of work capabilities such as
+                expanding professional network,
+                social values, work quality and ethics.
+            </p>
+        </div>
+    </div>
 
 
     <hr />
@@ -56,4 +64,5 @@
 </div>
 
 </body>
+
 </html>
