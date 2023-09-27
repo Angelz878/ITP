@@ -144,9 +144,9 @@ def UpdateCompany():
         cursor.execute(update_sql, (company_name, company_address,
                        monthly_allowance, company_supervisor_name, company_supervisor_email, student_id))
         db_conn.commit()
-        # Uplaod image file in S3 #
-        company_acceptance_form_in_s3 = "com-acceptance-form" + \
-            str(student_id) + "_image_file"
+ 
+        company_acceptance_form_in_s3 = "com-acceptance-form-" + \
+            str(student_id) + "-pdf-file" + ".pdf" 
         s3 = boto3.resource('s3')
 
         try:
@@ -170,8 +170,8 @@ def UpdateCompany():
         except Exception as e:
             return str(e)
 
-        parent_acknowledge_form_in_s3 = "parent-ack-form" + \
-            str(student_id) + "_image_file"
+        parent_acknowledge_form_in_s3 = "parent-ack-form-" + \
+            str(student_id) + "-pdf-file" + ".pdf" 
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
@@ -193,8 +193,8 @@ def UpdateCompany():
         except Exception as e:
             return str(e)
 
-        letter_of_indemnity_in_s3 = "letter-of-indemnity-form" + \
-            str(student_id) + "_image_file"
+        letter_of_indemnity_in_s3 = "letter-of-indemnity-form-" + \
+            str(student_id) + "-pdf-file" + ".pdf" 
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
@@ -216,8 +216,8 @@ def UpdateCompany():
         except Exception as e:
             return str(e)
 
-        hired_evidence_in_s3 = "hired-evidence-form" + \
-            str(student_id) + "_image_file"
+        hired_evidence_in_s3 = "hired-evidence-form-" + \
+            str(student_id) + "-pdf-file" + ".pdf" 
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
