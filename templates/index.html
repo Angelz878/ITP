@@ -10,10 +10,10 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar-links">
-                <a href="{{ url_for(filename='index.html') }}" class="navbar-link">Home</a>
+                <a href="/templates/index.html" class="navbar-link">Home</a>
                 <div class="spacer"></div> <!-- Add a spacer between the links -->
                 <div id="itenMenu" class="navbar-collapse collapse navbar-right" style="display:inline-block; vertical-align: top;">
-                    <a href="{{ url_for(filename='login.html') }}" class="navbar-link">Student Login</a>
+                    <a href="/templates/login.html" class="navbar-link">Student Login</a>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
 <div class="jumbotron row">
 
 <div class="col-md-4">
-    <img src="{{ url_for('images', filename='download.png') }}" />
+    <img src="{{ url_for('static', filename='download.png') }}" />
 </div>
 
 <div class="col-md-8">
