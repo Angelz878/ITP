@@ -216,6 +216,44 @@ def AddCompany():
     # return render_template('student.html', name=emp_name)
     return render_template('student.html')
 
+@app.route("/addcand", methods=['POST'])
+def AddCandidate():
+    # Extract form data from the registration form
+    level = request.form.get('level')
+    cohort = request.form.get('cohort')
+    student_programme = request.form.get('student_programme')
+    intern_period = request.form.get('intern_period')
+    student_group = request.form.get('student_group')
+    student_id = request.form['student_id']
+    student_email = request.form['student_email']
+    cgpa = request.form['cgpa']
+    supervisor_name = request.form['supervisor_name']
+    supervisor_email = request.form['supervisor_email']
+    student_name = request.form['student_name']
+    student_NRIC = request.form['student_NRIC']
+    student_gender = request.form['student_gender']
+    remark = request.form['remark']
+    p_email = request.form['p_email']
+    student_address = request.form['student_address']
+    mobile_number = request.form['mobile_number']
+
+    # SQL insert statement for inserting all data into a single table
+    insert_sql = "INSERT INTO student (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, p_email, student_address, mobile_number) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+
+    cursor = db_conn.cursor()
+
+    try:
+        # Execute SQL insert statement
+        cursor.execute(insert_sql, (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, p_email,student_address, mobile_number))
+
+        db_conn.commit()
+
+    finally:
+        cursor.close()
+
+    print("all modifications done...")
+    return render_template('register.html')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
