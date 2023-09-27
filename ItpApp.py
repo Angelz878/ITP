@@ -237,7 +237,7 @@ def AddCandidate():
     mobile_number = request.form['mobile_number']
 
     # SQL insert statement for inserting all data into a single table
-    insert_sql = "INSERT INTO assignment (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, student_address, mobile_number) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO assignment (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, student_address, mobile_number) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
     cursor = db_conn.cursor()
 
