@@ -32,7 +32,11 @@ def home():
     if not session.get("email"):
         # if not there in the session then redirect to the login page
         return redirect("/login")
-    return render_template('index.html' name = name)
+    
+    # Get the student's name from the session
+    name = session.get("name")
+
+    return render_template('index.html', name=name)
 
 # login page
 @app.route('/login', methods =['GET', 'POST'])
