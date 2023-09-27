@@ -232,19 +232,18 @@ def AddCandidate():
     student_name = request.form['student_name']
     student_NRIC = request.form['student_NRIC']
     student_gender = request.form.get('student_gender')
-    remark = request.form['remark']
-    p_email = request.form['p_email']
+    remark = request.form['remark']    
     student_address = request.form['student_address']
     mobile_number = request.form['mobile_number']
 
     # SQL insert statement for inserting all data into a single table
-    insert_sql = "INSERT INTO assignment (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, p_email, student_address, mobile_number) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO assignment (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, student_address, mobile_number) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
     cursor = db_conn.cursor()
 
     try:
         # Execute SQL insert statement
-        cursor.execute(insert_sql, (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, p_email,student_address, mobile_number))
+        cursor.execute(insert_sql, (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark,student_address, mobile_number))
 
         db_conn.commit()
 
