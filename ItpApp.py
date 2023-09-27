@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, jsonify, session
 from flask_session import Session
 from pymysql import connections
 import os
@@ -307,7 +307,7 @@ def login():
             session['student_id'] = login_data[3]  # Store student ID in the session
             name = login_data[0]  # Access elements by index
             message = 'Logged in successfully!'
-            return redirect(url_for('student'))  # Redirect to the student home page
+            return render_template('student.html', message=message)  # Redirect to the student home page
         else:
             message = 'Please enter correct email / ic number!'
     
