@@ -133,7 +133,7 @@ def AddCompany():
     letter_of_indemnity = request.files['attchLetterOfIndemnity']
     hired_evidence = request.files['attchHiredEvidence']
 
-    insert_sql = "INSERT INTO assignment (company_name, company_address, monthly_allowance, company_supervisor_name, company_supervisor_email) VALUES (%s, %s, %s, %s, %s)"
+    update_sql = "UPDATE assignment SET company_name = %s, company_address = %s, monthly_allowance = %s, company_supervisor_name = %s, company_supervisor_email = %s, status = 'Applied'"
     cursor = db_conn.cursor()
 
     if company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "" and hired_evidence.filename == "":
@@ -141,7 +141,7 @@ def AddCompany():
 
     try:
 
-        cursor.execute(insert_sql, (company_name, company_address,
+        cursor.execute(update_sql, (company_name, company_address,
                        monthly_allowance, company_supervisor_name, company_supervisor_email))
         db_conn.commit()
         # Uplaod image file in S3 #
