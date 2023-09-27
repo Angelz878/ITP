@@ -44,6 +44,8 @@
             
                 UC Supervisor: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor" id="supervisor_name" name="supervisor"><br><br>
             
+                UC Supervisor Email: <input style="height:25px;font-size:14pt;color:grey;" type="supervisor_email" id="supervisor_email" name="supervisor_email"><br><br>
+
             </div>
 
             <br>
@@ -61,6 +63,8 @@
                     <option value="female">Female</option>
                   </select>
                   <br><br>
+
+                Health Remark: <input style="height:25px;font-size:14pt;color:grey;" type="remark" id="remark" name="remark" ><br><br>
 
             </div>
 
@@ -123,8 +127,10 @@
             var student_email = document.getElementById("student_email").value;
             var cgpa = document.getElementById("cgpa").value;
             var supervisor_name = document.getElementById("supervisor_name").value;
+            var supervisor_email = document.getElementById("supervisor_email").value;
             var student_name = document.getElementById("student_name").value;
             var student_NRIC = document.getElementById("student_NRIC").value;
+            var remark = document.getElementById("remark").value;
             var p_email = document.getElementById("p_email").value;
             var address = document.getElementById("address").value;
             var mobile_number = document.getElementById("mobile_number").value;
@@ -160,6 +166,11 @@
                 return false; 
             }
 
+            if (supervisor_email === "") {
+                alert("Supervisor email is required.");
+                return false; 
+            }
+
             if (student_name === "") {
                 alert("Full Name is required.");
                 return false; 
@@ -167,6 +178,11 @@
 
             if (student_NRIC === "") {
                 alert("IC Number is required.");
+                return false; 
+            }
+
+            if (remark === "") {
+                alert("Health Remark is required.");
                 return false; 
             }
 
