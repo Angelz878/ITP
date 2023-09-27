@@ -31,22 +31,25 @@ table = 'assignment'
 def home():
     return render_template('index.html')
 
+
 @app.route("/redirecthome", methods=['GET', 'POST'])
 def RedirectHome():
     return render_template('index.html')
+
 
 @app.route("/redirectlogin", methods=['GET', 'POST'])
 def RedirectLogin():
     return render_template('login.html')
 
+
 @app.route("/redirectregister", methods=['GET', 'POST'])
 def RedirectRegister():
     return render_template('register.html')
 
+
 @app.route("/redirectstudentpage", methods=['GET', 'POST'])
 def RedirectStudentPage():
     return render_template('student.html')
-
 
 
 @app.route("/fetchdatastudent", methods=['GET', 'POST'])
@@ -55,7 +58,7 @@ def fetch_student_data():
     if 'loggedin' in session:
         # Access the student_id from the session
         student_id = session['student_id']
-        
+
         # Define the SQL query to fetch data from the "assignment" table based on the student_id
         sql_query = """
             SELECT 
@@ -95,10 +98,11 @@ def fetch_student_data():
     else:
         return jsonify({"error": "Not logged in"})
 
+
 @app.route("/updatesupervisor", methods=['POST'])
 def UpdateSupervisor():
     student_id = session['student_id']
-    
+
     supervisor_name = request.form['ucSupervisor']
     supervisor_email = request.form['ucSupervisorEmail']
 
@@ -106,13 +110,14 @@ def UpdateSupervisor():
     cursor = db_conn.cursor()
 
     try:
-        cursor.execute(update_sql, (supervisor_name, supervisor_email, student_id))
+        cursor.execute(update_sql, (supervisor_name,
+                       supervisor_email, student_id))
         db_conn.commit()
-        
+
     except Exception as e:
         db_conn.rollback()  # Rollback changes if an error occurs
         print(f"Error: {e}")
-        
+
     finally:
         cursor.close()
 
@@ -122,7 +127,7 @@ def UpdateSupervisor():
 @app.route("/updatecompany", methods=['POST'])
 def UpdateCompany():
     student_id = session['student_id']
-    
+
     company_name = request.form['companyName']
     company_address = request.form['companyAddress']
     monthly_allowance = request.form['allowance']
@@ -144,9 +149,9 @@ def UpdateCompany():
         cursor.execute(update_sql, (company_name, company_address,
                        monthly_allowance, company_supervisor_name, company_supervisor_email, student_id))
         db_conn.commit()
- 
+
         company_acceptance_form_in_s3 = "com-acceptance-form-" + \
-            str(student_id) + "-pdf-file" + ".pdf" 
+            str(student_id) + "-pdf-file" + ".pdf"
         s3 = boto3.resource('s3')
 
         try:
@@ -162,7 +167,7 @@ def UpdateCompany():
             else:
                 s3_location = '-' + s3_location
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+            object_url_company_acceptance = "https://s3{0}.amazonaws.com/{1}/{2}".format(
                 s3_location,
                 custombucket,
                 company_acceptance_form_in_s3)
@@ -171,7 +176,7 @@ def UpdateCompany():
             return str(e)
 
         parent_acknowledge_form_in_s3 = "parent-ack-form-" + \
-            str(student_id) + "-pdf-file" + ".pdf" 
+            str(student_id) + "-pdf-file" + ".pdf"
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
@@ -185,7 +190,7 @@ def UpdateCompany():
             else:
                 s3_location = '-' + s3_location
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+            object_url_parent_acknowledge = "https://s3{0}.amazonaws.com/{1}/{2}".format(
                 s3_location,
                 custombucket,
                 parent_acknowledge_form_in_s3)
@@ -194,7 +199,7 @@ def UpdateCompany():
             return str(e)
 
         letter_of_indemnity_in_s3 = "letter-of-indemnity-form-" + \
-            str(student_id) + "-pdf-file" + ".pdf" 
+            str(student_id) + "-pdf-file" + ".pdf"
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
@@ -208,7 +213,7 @@ def UpdateCompany():
             else:
                 s3_location = '-' + s3_location
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+            object_url_letter_of_indemnity = "https://s3{0}.amazonaws.com/{1}/{2}".format(
                 s3_location,
                 custombucket,
                 letter_of_indemnity_in_s3)
@@ -217,7 +222,7 @@ def UpdateCompany():
             return str(e)
 
         hired_evidence_in_s3 = "hired-evidence-form-" + \
-            str(student_id) + "-pdf-file" + ".pdf" 
+            str(student_id) + "-pdf-file" + ".pdf"
         s3 = boto3.resource('s3')
         try:
             s3.Bucket(custombucket).put_object(
@@ -231,7 +236,7 @@ def UpdateCompany():
             else:
                 s3_location = '-' + s3_location
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+            object_url_hired_evidence = "https://s3{0}.amazonaws.com/{1}/{2}".format(
                 s3_location,
                 custombucket,
                 hired_evidence_in_s3)
@@ -239,12 +244,20 @@ def UpdateCompany():
         except Exception as e:
             return str(e)
 
+        update_sql = "UPDATE assignment SET com_acceptance_form_url = %s, parent_ack_form_url = %s, letter_of_indemnity_url = %s, hired_evidence_url = %s WHERE student_id = %s"
+        cursor = db_conn.cursor()
+
+        cursor.execute(update_sql, (object_url_company_acceptance, object_url_parent_acknowledge,
+                       object_url_letter_of_indemnity, object_url_hired_evidence, student_id))
+        db_conn.commit()
+
     finally:
         cursor.close()
 
     print("All modification done...")
     # return render_template('student.html', name=emp_name)
     return render_template('student.html')
+
 
 @app.route("/addcand", methods=['POST'])
 def AddCandidate():
@@ -262,7 +275,7 @@ def AddCandidate():
     student_name = request.form['student_name']
     student_NRIC = request.form['student_NRIC']
     student_gender = request.form.get('student_gender')
-    remark = request.form['remark']    
+    remark = request.form['remark']
     student_address = request.form['student_address']
     mobile_number = request.form['mobile_number']
 
@@ -273,7 +286,8 @@ def AddCandidate():
 
     try:
         # Execute SQL insert statement
-        cursor.execute(insert_sql, (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark,student_address, mobile_number))
+        cursor.execute(insert_sql, (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa,
+                       supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, student_address, mobile_number))
 
         db_conn.commit()
 
@@ -282,6 +296,7 @@ def AddCandidate():
 
     print("all modifications done...")
     return render_template('login.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -297,7 +312,8 @@ def login():
         # fetch query result as tuples
         cursor = db_conn.cursor()
         # query
-        cursor.execute('SELECT student_name, student_email, student_NRIC, student_id FROM assignment WHERE student_email = %s AND student_NRIC = %s', (email, ic_number))
+        cursor.execute(
+            'SELECT student_name, student_email, student_NRIC, student_id FROM assignment WHERE student_email = %s AND student_NRIC = %s', (email, ic_number))
         login_data = cursor.fetchone()
 
         # checks if a user with the provided email and NRIC was found in the database.
@@ -306,22 +322,24 @@ def login():
             session['loggedin'] = True
             session['email'] = login_data[1]  # Access elements by index
             session['ic_number'] = login_data[2]  # Access elements by index
-            session['student_id'] = login_data[3]  # Store student ID in the session
+            # Store student ID in the session
+            session['student_id'] = login_data[3]
             name = login_data[0]  # Access elements by index
             message = 'Logged in successfully!'
-            return render_template('student.html', message=message)  # Redirect to the student home page
+            # Redirect to the student home page
+            return render_template('student.html', message=message)
         else:
             message = 'Please enter correct email / IC Number combination!'
-    
+
     return render_template('login.html', message=message)
 
 
-
-  
 @app.route('/logout')
 def logout():
     session.clear()  # Clear all session data
-    return render_template('login.html')  # Redirect to the login page after logout
+    # Redirect to the login page after logout
+    return render_template('login.html')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
