@@ -133,7 +133,7 @@ def AddCompany():
     letter_of_indemnity = request.files['attchLetterOfIndemnity']
     hired_evidence = request.files['attchHiredEvidence']
 
-    update_sql = "UPDATE assignment SET company_name = %s, company_address = %s, monthly_allowance = %s, company_supervisor_name = %s, company_supervisor_email = %s, status = 'Applied'"
+    insert_sql = "INSERT INTO assignment (company_name, company_address, monthly_allowance, company_supervisor_name, company_supervisor_email) VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     if company_acceptance_form.filename == "" and parent_acknowledge_form.filename == "" and letter_of_indemnity.filename == "" and hired_evidence.filename == "":
@@ -141,7 +141,7 @@ def AddCompany():
 
     try:
 
-        cursor.execute(update_sql, (company_name, company_address,
+        cursor.execute(insert_sql, (company_name, company_address,
                        monthly_allowance, company_supervisor_name, company_supervisor_email))
         db_conn.commit()
         # Uplaod image file in S3 #
@@ -265,9 +265,9 @@ def AddCandidate():
     remark = request.form['remark']    
     student_address = request.form['student_address']
     mobile_number = request.form['mobile_number']
-    
+
     # SQL insert statement for inserting all data into a single table
-    insert_sql = "INSERT INTO assignment (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, student_address, mobile_number, status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'pending')"
+    insert_sql = "INSERT INTO assignment (level, cohort, student_programme, intern_period, student_group, student_id, student_email, cgpa, supervisor_name, supervisor_email, student_name, student_NRIC, student_gender, remark, student_address, mobile_number) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
     cursor = db_conn.cursor()
 
@@ -291,8 +291,8 @@ def login():
     # if the form is submitted
     if request.method == 'POST':
         # retrieve email and ic_number from the form data
-        email = request.form.get("student_email")
-        ic_number = request.form.get("student_NRIC")
+        email = request.form.get("email")
+        ic_number = request.form.get("ic_number")
 
         # fetch query result as tuples
         cursor = db_conn.cursor()
