@@ -25,7 +25,7 @@ table = 'assignment'
 def home():
     return render_template('index.html')
 
-@app.route("/redirecthome ", methods=['GET', 'POST'])
+@app.route("/redirecthome", methods=['GET', 'POST'])
 def RedirectHome():
     return render_template('index.html')
 
