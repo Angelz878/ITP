@@ -274,7 +274,7 @@ def login():
         ic_number = request.form.get("ic_number")
 
         # fetch query result as dictionaries
-        cursor = db_conn.cursor(DictCursor)
+        cursor = db_conn.cursor()
         # query
         cursor.execute('SELECT student_name, student_email, student_NRIC FROM assignment WHERE student_email = % s AND student_NRIC = % s', (email, ic_number))
         login_data = cursor.fetchone()
