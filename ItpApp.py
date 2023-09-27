@@ -7,6 +7,11 @@ from config import *
 
 app = Flask(__name__)
 
+# Set a secret key for session management
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+
+
 bucket = custombucket
 region = customregion
 
