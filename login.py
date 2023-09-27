@@ -58,7 +58,7 @@ def login():
             session['email'] = login_data['email']
             session['ic_number'] = login_data['ic_number']
             message = 'Logged in successfully !'
-            return render_template('login.html', message = message)
+            return render_template('/', message = message)
         else:
             message = 'Please enter correct email / ic number!'
     return render_template('login.html', message = message)
