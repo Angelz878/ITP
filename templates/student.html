@@ -328,336 +328,6 @@
                                     data-valmsg-for="attchCompanyAcceptance" data-valmsg-replace="true"></span>
                             </div>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Page - TAR UC ITP</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='content.css') }}">
-    <!-- Add this script to your HTML -->
-    <script>
-        // Function to fetch student data when the page loads
-        function fetchStudentData() {
-            // Make an AJAX request to the /fetchdata route
-            fetch('/fetchdatastudent')
-                .then(response => response.json())
-                .then(data => {
-                    // Update the page content with the fetched data
-                    document.getElementById('GreetingName').innerText = data.student_name;
-                    document.getElementById('cohort').innerText = data.cohort;
-                    document.getElementById('Intern_Period').innerText = data.intern_period;
-                    document.getElementById('applyStatus').innerText = data.status;
-                    document.getElementById('remark').innerText = data.remark;
-                    document.getElementById('studentName').innerText = data.student_name;
-                    document.getElementById('studentId').innerText = data.student_id;
-                    document.getElementById('nric').innerText = data.student_NRIC;
-                    document.getElementById('gender').innerText = data.student_gender;
-                    document.getElementById('programme').innerText = data.student_programme;
-                    document.getElementById('studentEmail').innerText = data.student_email;
-                    document.getElementById('contactNo').innerText = data.mobile_number;
-                    document.getElementById('ucSupervisor').value = data.supervisor_name;
-                    document.getElementById('ucSupervisorEmail').value = data.supervisor_email;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        // Function to fetch student data when the page loads
-        function fetchCompanyData() {
-            // Make an AJAX request to the /fetchdata route
-            fetch('/fetchdatacompany')
-                .then(response => response.json())
-                .then(data => {
-                    // Update the page content with the fetched data
-                    document.getElementById('CompanyName').innerText = data.company_name;
-                    document.getElementById('CompanyAddress').innerText = data.company_address;
-                    document.getElementById('MonthlyAllowance').innerText = data.monthly_allowance;
-                    document.getElementById('CompanySupervisorName').innerText = data.company_supervisor_name;
-                    document.getElementById('CompanySupervisorEmail').innerText = data.company_supervisor_email;
-                    document.getElementById('ComAcceptanceFormUrl').innerText = data.com_acceptance_form_url;
-                    document.getElementById('ParentAckFormUrl').innerText = data.parent_ack_form_url;
-                    document.getElementById('LetterOfIndemnityUrl').innerText = data.letter_of_indemnity_url;
-                    document.getElementById('HiredEvidenceUrl').innerText = data.hired_evidence_url;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-
-        window.onload = function () {
-            fetchStudentData();
-            fetchCompanyData();
-        };
-    </script>
-
-
-</head>
-
-<body>
-
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-links">
-                    <a href="#" class="navbar-link">Home</a>
-                    <div class="spacer"></div> <!-- Add a spacer between the links -->
-                    <a href="/logout" class="navbar-link">Logout</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <div class="container body-content">
-        <h2>Welcome : <span id="GreetingName"></span></h2>
-        <br>
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading"> Summary </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="cohort">Cohort</label>
-                        <div class="col-md-10">
-                            <span id="cohort"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="cohort"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="Intern_Period">Intern Period</label>
-                        <div class="col-md-10">
-                            <span id="Intern_Period"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="cohort"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="applyStatus">Status</label>
-                        <div class="col-md-10">
-                            <span id="applyStatus"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="applyStatus"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="remark">Remark</label>
-                        <div class="col-md-10 important-text">
-                            <span id="remark"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="remark"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">Student Detail</div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="studentName">Student Name</label>
-                        <div class="col-md-10">
-                            <span id="studentName"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="studentName"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="studentId">Student ID</label>
-                        <div class="col-md-10">
-                            <span id="studentId"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="studentId"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="nric">NRIC No.</label>
-                        <div class="col-md-10">
-                            <span id="nric"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="nric"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="gender">Gender</label>
-                        <div class="col-md-10">
-                            <span id="gender"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="gender"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="programme">Programme</label>
-                        <div class="col-md-10">
-                            <span id="programme"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="programme"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="studentEmail">Student Email</label>
-                        <div class="col-md-10">
-                            <span id="studentEmail"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="studentEmail"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-md-2" for="contactNo">Mobile Number</label>
-                        <div class="col-md-10">
-                            <span id="contactNo"></span>
-                            <span class="field-validation-valid text-danger" data-valmsg-for="contactNo"
-                                data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <form action="/updatesupervisor" autocomplete="on" method="POST" enctype="multipart/form-data">
-            <div class="panel-group">
-                <div class="panel panel-default">
-                    <div class="panel-heading">UC Supervisor</div>
-                    <div class="panel-body">
-                        <!-- Updated form inputs with correct names -->
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="ucSupervisor">UC Supervisor Name</label>
-                            <div class="col-md-10">
-                                <div class="col-md-10">
-                                    <input class="form-control text-box single-line" id="ucSupervisor"
-                                        name="ucSupervisor" type="text" value="" />
-                                    <span id="ucSupervisor"></span>
-                                    <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisor"
-                                        data-valmsg-replace="true"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="ucSupervisorEmail">UC Supervisor Email</label>
-                            <div class="col-md-10">
-                                <div class="col-md-10">
-                                    <input class="form-control text-box single-line" id="ucSupervisorEmail"
-                                        name="ucSupervisorEmail" placeholder="e.g: xxxxx@tarc.edu.my" type="email"
-                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
-                                        title="Enter a valid email address">
-                                    <span id="ucSupervisorEmail"></span>
-                                    <span class="field-validation-valid text-danger" data-valmsg-for="ucSupervisorEmail"
-                                        data-valmsg-replace="true"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-10">
-                                <div class="col-md-10">
-                                    <input id="btnUpdate" type="submit" value="Update" class="btn btn-default" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-
-
-
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">Company Detail</div>
-
-
-                <form action="/updatecompany" autocomplete="on" method="POST" enctype="multipart/form-data">
-                    <div class="panel-body">
-                        <div class="form-group row">
-                            <label class="control-label col-md-2" for="companyName">Company Name</label>
-                            <div class="col-md-10">
-                                <div>
-                                    <div style="display:inline-block">
-                                        <input class="form-control long-textbox text-box single-line" id="companyName"
-                                            name="companyName" type="text" value="">
-                                        <span id="CompanyName"></span>
-                                    </div>
-                                </div>
-                                <span class="field-validation-valid text-danger" data-valmsg-for="companyName"
-                                    data-valmsg-replace="true"></span>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="companyAddress">Address</label>
-                            <div class="col-md-10">
-                                <textarea class="form-control" cols="20" id="companyAddress" name="companyAddress"
-                                    rows="2" value=""></textarea>
-                                <span id="CompanyAddress"></span>
-                                <span class="field-validation-valid text-danger" data-valmsg-for="companyAddress"
-                                    data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="allowance">Monthly Allowance</label>
-                            <div class="col-md-10">
-                                <input class="form-control text-box single-line" data-val="true"
-                                    data-val-number="The field Monthly Allowance must be a number."
-                                    data-val-required="The Monthly Allowance field is required." id="allowance"
-                                    name="allowance" type="text" value=""/>
-                                <span id="MonthlyAllowance"></span>
-                                <span class="field-validation-valid text-danger" data-valmsg-for="allowance"
-                                    data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="companySupervisor">Com. Supervisor
-                                Name</label>
-                            <div class="col-md-10">
-                                <input class="form-control text-box single-line" id="companySupervisor"
-                                    name="companySupervisor" type="text" value=""/>
-                                <span id="CompanySupervisorName"></span>
-                                <span class="field-validation-valid text-danger" data-valmsg-for="companySupervisor"
-                                    data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="companySupervisorEmail">Com. Supervisor
-                                Email</label>
-                            <div class="col-md-10">
-                                <input class="form-control text-box single-line" id="companySupervisorEmail"
-                                    name="companySupervisorEmail" type="email" required
-                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
-                                    title="Enter a valid email address" value=""/>
-                                <span id="CompanySupervisorEmail"></span>
-                                <span class="field-validation-valid text-danger"
-                                    data-valmsg-for="companySupervisorEmail" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="attchCompanyAcceptance">Com. Acceptance
-                                Form</label>
-                            <div class="col-md-10">
-
-                                <input accept=".pdf" id="fUploadCompanyAcceptance" name="attchCompanyAcceptance"
-                                    type="file" value="" />
-                                <span class="field-validation-valid text-danger"
-                                    data-valmsg-for="attchCompanyAcceptance" data-valmsg-replace="true"></span>
-                            </div>
-
                             <div>
                                 <span id="ComAcceptanceFormUrl" style="cursor: pointer; text-decoration: underline; color: blue;">Click to open</span>
                             </div>
@@ -671,6 +341,7 @@
                                     }
                                 });
                             </script>
+                            
                         </div>
 
 
@@ -684,6 +355,7 @@
                                     data-valmsg-replace="true"></span>
                             </div>
 
+                            <div><span id="ParentAckFormUrl"></span></div>
                             <div>
                                 <span id="ParentAckFormUrl" style="cursor: pointer; text-decoration: underline; color: blue;">Click to open</span>
                             </div>
@@ -697,6 +369,7 @@
                                     }
                                 });
                             </script>
+                            
                         </div>
 
 
@@ -710,7 +383,20 @@
                                     data-valmsg-for="attchLetterOfIndemnity" data-valmsg-replace="true"></span>
                             </div>
 
-                            <div><span id="LetterOfIndemnityUrl"></span></div>
+                            <div>
+                                <span id="LetterOfIndemnityUrl" style="cursor: pointer; text-decoration: underline; color: blue;">Click to open</span>
+                            </div>
+                            
+                            <script>
+                                // Function to open the link in a new tab
+                                document.getElementById('LetterOfIndemnityUrl').addEventListener('click', function () {
+                                    const url = this.innerText; // Get the URL from the inner text
+                                    if (url) {
+                                        window.open(url, '_blank'); // Open the URL in a new tab
+                                    }
+                                });
+                            </script>
+                            
                         </div>
 
                         <div class="form-group">
@@ -735,72 +421,7 @@
                                     }
                                 });
                             </script>
-                        </div>
-
-                        <div class="form-group ">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" name="submit" value="Save And Submit" class="btn btn-success" />
-                            </div>
-                        </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-    </div>
-
-
-    <hr />
-    <footer>
-        <p>&copy; 2023 - TAR UC ITP</p>
-    </footer>
-    </div>
-
-
-
-</body>
-
-</html>
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="attchParentAck">Parent Ack. Form</label>
-                            <div class="col-md-10">
-
-                                <input accept=".pdf" id="fUploadParentAck" name="attchParentAck" type="file" value="" />
-                                <span class="field-validation-valid text-danger" data-valmsg-for="attchParentAck"
-                                    data-valmsg-replace="true"></span>
-                            </div>
-
-                            <div><span id="ParentAckFormUrl"></span></div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="attchLetterOfIndemnity">Letter of
-                                Indemnity</label>
-                            <div class="col-md-10">
-                                <input accept=".pdf" id="fUploadLetterOfIndemnity" name="attchLetterOfIndemnity"
-                                    type="file" value="" />
-                                <span class="field-validation-valid text-danger"
-                                    data-valmsg-for="attchLetterOfIndemnity" data-valmsg-replace="true"></span>
-                            </div>
-
-                            <div><span id="LetterOfIndemnityUrl"></span></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="attchHiredEvidence">Hired evidence</label>
-                            <div class="col-md-10">
-                                <input accept=".pdf" id="fUploadHiredEvidence" name="attchHiredEvidence" type="file"
-                                    value="" />
-                                <span class="field-validation-valid text-danger" data-valmsg-for="attchHiredEvidence"
-                                    data-valmsg-replace="true"></span>
-                            </div>
-
-                            <div><span id="HiredEvidenceUrl"></span></div>
+                            
                         </div>
 
                         <div class="form-group ">
