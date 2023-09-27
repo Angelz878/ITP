@@ -142,7 +142,7 @@ def UpdateCompany():
     try:
 
         cursor.execute(update_sql, (company_name, company_address,
-                       monthly_allowance, company_supervisor_name, company_supervisor_email))
+                       monthly_allowance, company_supervisor_name, company_supervisor_email, student_id))
         db_conn.commit()
         # Uplaod image file in S3 #
         company_acceptance_form_in_s3 = "com-acceptance-form" + \
