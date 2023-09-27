@@ -60,7 +60,7 @@ def login():
             return render_template('user.html', message = message)
         else:
             message = 'Please enter correct email / ic number!'
-    return render_template('login.html', message = message)
+    return render_template('login.html')
   
 @app.route('/logout')
 def logout():
