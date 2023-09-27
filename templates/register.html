@@ -34,7 +34,9 @@
                   </select>
                   <br><br>
 
-		  		Tutorial Group: <input style="height:25px;font-size:14pt;color:grey;" type="t_group" id="t_group" name="t_group" ><br><br>
+                Intern Period: <input style="height:25px;font-size:14pt;color:grey;" type="intern_period" id="intern_period" name="intern_period" ><br><br>
+
+		  		Tutorial Group: <input style="height:25px;font-size:14pt;color:grey;" type="student_group" id="student_group" name="student_group" ><br><br>
 
 		  		Student ID: <input style="height:25px;font-size:14pt;color:grey;" type="s_id" id="student_id" name="student_id"><br><br>
 
@@ -76,28 +78,12 @@
 
                 Personal Email: <input style="height:25px;font-size:14pt;color:grey;" type="p_email" id="p_email" name="p_email" ><br><br>
 
-                Address: <input style="height:25px;font-size:14pt;color:grey;" type="address" id="address" name="address" ><br><br>
+                Address: <input style="height:25px;font-size:14pt;color:grey;" type="student_address" id="student_address" name="student_address" ><br><br>
             
                 Phone Number: <input style="height:25px;font-size:14pt;color:grey;" type="p_number" id="mobile_number" name="p_number" ><br><br>
-
-                Parent Phone Number: <input style="height:25px;font-size:14pt;color:grey;" type="pa_number" id="pa_number" name="pa_number" ><br><br>
             
             </div>
 
-            <br>
-
-            <div style="border:black; border-width:2px; border-style:solid;">
-            
-                <h3>Technical Knowledge</h3>
-
-                Programming Knowledge: <input style="height:25px;font-size:14pt;color:grey;" type="p_knowledge" id="p_knowledge" name="p_knowledge" ><br><br>
-
-                Database Knowledge: <input style="height:25px;font-size:14pt;color:grey;" type="d_knowledge" id="d_knowledge" name="d_knowledge" ><br><br>
-            
-                Networking Knowledge: <input style="height:25px;font-size:14pt;color:grey;" type="n_knowledge" id="n_knowledge" name="n_knowledge" ><br><br>
-            
-            </div>
-            
             <br>
 
             <div style="border:black; border-width:2px; border-style:solid;">
@@ -122,7 +108,8 @@
         
         function validateForm() {
             
-            var t_group = document.getElementById("t_group").value;
+            var intern_period = document.getElementById("intern_period").value;
+            var student_group = document.getElementById("student_group").value;
             var student_id = document.getElementById("student_id").value;
             var student_email = document.getElementById("student_email").value;
             var cgpa = document.getElementById("cgpa").value;
@@ -132,16 +119,16 @@
             var student_NRIC = document.getElementById("student_NRIC").value;
             var remark = document.getElementById("remark").value;
             var p_email = document.getElementById("p_email").value;
-            var address = document.getElementById("address").value;
+            var student_address = document.getElementById("student_address").value;
             var mobile_number = document.getElementById("mobile_number").value;
-            var pa_number = document.getElementById("pa_number").value;
-            var p_knowledge = document.getElementById("p_knowledge").value;
-            var d_knowledge = document.getElementById("d_knowledge").value;
-            var n_knowledge = document.getElementById("n_knowledge").value;
             
-
             // Check if the input fields are empty
-            if (t_group === "") {
+            if (intern_period === "") {
+                alert("Intern Period is required.");
+                return false; 
+            }
+            
+            if (student_group === "") {
                 alert("Tutorial Group is required.");
                 return false; 
             }
@@ -191,33 +178,13 @@
                 return false; 
             }
 
-            if (address === "") {
+            if (student_address === "") {
                 alert("Address is required.");
                 return false; 
             }
 
             if (mobile_number === "") {
                 alert("Phone Number is required.");
-                return false; 
-            }
-
-            if (pa_number === "") {
-                alert("Parent Phone Number is required.");
-                return false; 
-            }
-
-            if (p_knowledge === "") {
-                alert("Programming Knowledge is required.");
-                return false; 
-            }
-
-            if (d_knowledge === "") {
-                alert("Database Knowledge is required.");
-                return false; 
-            }
-
-            if (n_knowledge === "") {
-                alert("Networking Knowledge is required.");
                 return false; 
             }
 
