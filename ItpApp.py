@@ -300,7 +300,7 @@ def login():
         cursor.execute('SELECT student_name, student_email, student_NRIC, student_id FROM assignment WHERE student_email = %s AND student_NRIC = %s', (email, ic_number))
         login_data = cursor.fetchone()
 
-        # checks if a user with the provided email and NRIC was found in the database.
+        # checks if a user with the provided email and password was found in the database.
         if login_data:
             # user found in the database
             session['loggedin'] = True
@@ -311,9 +311,11 @@ def login():
             message = 'Logged in successfully!'
             return render_template('student.html', message=message)  # Redirect to the student home page
         else:
-            message = 'Please enter correct email / NRIC combination!'
+            message = 'Please enter correct email / ic number!'
     
     return render_template('student.html', message=message)
+
+
   
 @app.route('/logout')
 def logout():
